@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Property Estimation - Joback Method</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css">
+  <script src="../../../../../js/propjs/propestjs/joback-method.js" defer></script>
+</head>
+<body>
+  <h1 class="main-heading">Property Estimation – Joback Method</h1>
+  <hr class="header-line" />
+  <p class="description">Estimate thermophysical properties using Joback group contribution method.</p>
+
+  <div style="text-align:center; margin-bottom: 20px;">
+    <a href="../propest/joback.html" class="back-button">&larr; Back to properties</a>
+  </div>
+
+  <div class="grid-container" style="justify-content: center;">
+    <div class="folder-card" style="width: 700px;">
+      <form id="jobackForm" onsubmit="return false;">
+        <label for="groupData">Enter Functional Groups and Count (format: Group,Count per line):</label>
+        <textarea id="groupData" rows="10" style="width:100%; font-family: monospace;" placeholder="e.g.\nCH3,2\nCH2,3\nOH,1"></textarea>
+
+        <button type="submit" onclick="calculateJoback()">Calculate</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+</body>
+</html>

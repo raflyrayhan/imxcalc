@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Air Cooled Heat Exchanger Sizing</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Air Cooled Heat Exchanger Sizing</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Estimate surface area and air-side performance of an air-cooled heat exchanger based on process and air temperatures.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../heattranindex.html" class="back-button">← Back to Heat Transfer</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="acForm">
+        <div class="form-group">
+          <label for="Q">Heat Duty (kW):</label>
+          <input type="number" id="Q" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T_process_in">Process Inlet Temp (°C):</label>
+          <input type="number" id="T_process_in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T_process_out">Process Outlet Temp (°C):</label>
+          <input type="number" id="T_process_out" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T_air_in">Air Inlet Temp (°C):</label>
+          <input type="number" id="T_air_in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="U">Overall Heat Transfer Coefficient (W/m²·K):</label>
+          <input type="number" id="U" required>
+        </div>
+
+        <div class="form-group">
+          <label for="m">Process Mass Flow Rate (kg/h):</label>
+          <input type="number" id="m" required>
+        </div>
+
+        <div class="form-group">
+          <label for="cp">Process Specific Heat (J/kg·K):</label>
+          <input type="number" id="cp" required>
+        </div>
+
+        <button type="button" onclick="calculateAC()">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/heattranjs/heatexchanger/air-cooled.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

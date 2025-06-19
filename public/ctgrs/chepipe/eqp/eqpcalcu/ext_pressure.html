@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>External Pressure Check (Vessel)</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">External Pressure Check (Cylindrical Vessel)</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="extPressForm" autocomplete="off">
+        <div class="form-group">
+          <label for="Do">Outside Diameter (D<sub>o</sub>, mm)</label>
+          <input type="number" step="0.1" id="Do" value="2000" required>
+        </div>
+        <div class="form-group">
+          <label for="t">Shell Thickness (t, mm)</label>
+          <input type="number" step="0.1" id="t" value="16" required>
+        </div>
+        <div class="form-group">
+          <label for="L">Shell Length Between Stiffener (L, mm)</label>
+          <input type="number" step="0.1" id="L" value="6000" required>
+        </div>
+        <div class="form-group">
+          <label for="E">Young's Modulus (E, MPa)</label>
+          <input type="number" step="1" id="E" value="200000" required>
+        </div>
+        <div class="form-group">
+          <label for="nu">Poisson's Ratio (ν)</label>
+          <input type="number" step="0.01" id="nu" value="0.3" required>
+        </div>
+        <div class="form-group">
+          <label for="Pext">Applied External Pressure (P<sub>ext</sub>, bar)</label>
+          <input type="number" step="0.01" id="Pext" value="1" required>
+        </div>
+        <button type="button" onclick="extPressureCheck()">Check External Pressure</button>
+      </form>
+      <div id="extp_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/eqpjs/ext_pressure.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HETP & NTU Estimation</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">HETP & NTU Estimation</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="hetpNtuForm" autocomplete="off">
+        <div class="form-group">
+          <label for="Z">Packed Height (Z, meter)</label>
+          <input type="number" step="0.01" id="Z" value="5" required>
+        </div>
+        <div class="form-group">
+          <label for="N">Number of Theoretical Stages (N)</label>
+          <input type="number" step="0.01" id="N" value="10" required>
+        </div>
+        <div class="form-group">
+          <label for="HTU">HTU (Height of Transfer Unit, m)</label>
+          <input type="number" step="0.01" id="HTU" value="0.5" required>
+        </div>
+        <div class="form-group">
+          <label for="NTU">NTU (Number of Transfer Units)</label>
+          <input type="number" step="0.01" id="NTU" value="10" required>
+        </div>
+        <button type="button" onclick="calcHETP_NTU()">Estimate</button>
+      </form>
+      <div id="hetp_ntu_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/distjs/hetp_ntu.js"></script>
+</body>
+</html>

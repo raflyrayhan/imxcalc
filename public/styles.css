@@ -1,0 +1,169 @@
+.header-image {
+    width: 220px;
+    height: auto;
+    position: absolute;
+    margin-bottom: 20px;
+    top: 25px;
+    left: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out;
+  }
+  a {
+  color: white;
+  padding: 15px 25px;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+  .header-line {
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #0b60bb, #043e7c);
+    border: none;
+    border-radius: 5px;
+    margin: 6px 0 5px 0;
+  }
+  
+  .header-image:hover {
+    transform: scale(1.05);
+  }
+  
+  h1 {
+    margin-top: 80px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    font-size: 2.75em;
+    color: #043e7c;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 20px 40px;
+    margin-top: 40px;
+  }
+  
+  .folder-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .folder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .folder-card h2 {
+    color: #082032;
+    margin-bottom: 8px;
+    font-size: 1.35em;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .folder-card .count {
+    font-weight: bold;
+    font-size: 0.90em;
+    color: #aa1e1e;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  
+  .folder-card p {
+    color: #4a4a4a;
+    font-size: 0.95em;
+    line-height: 1.45;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .explore-button {
+    background: linear-gradient(to right, #001eff, #00087e);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    margin-top: 20px;
+    border-radius: 30px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .explore-button:hover {
+    background-color: #b33327;
+    transform: scale(1.05);
+  }
+  
+  .footer {
+    background: #002d5c; /* Match with the header color */
+    color: white;
+    text-align: left; /* Align text to the left */
+    padding: 10px 10px; /* Padding for spacing */
+    position: relative; /* Positioning relative for bottom alignment */
+    bottom: 0;
+    width: 99%; /* Full width */
+    margin-top: 20px; /* Space above the footer */
+}
+
+.footer p {
+    margin: 5px 0; /* Spacing between paragraphs */
+}
+
+.footer p:last-child {
+    text-align: right; /* Align the 'by' text to the right */
+}
+
+/* Tambahan animasi transisi halaman */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Jika ingin efek bertahap untuk tiap folder-card */
+.folder-card {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+.back-button {
+  display: inline-block;
+  font-size: 1rem;
+  color: #1d72b8;
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid #1d72b8;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  margin: 0 auto;
+}
+
+.folder-card:nth-child(1) { animation-delay: 0.1s; }
+.folder-card:nth-child(2) { animation-delay: 0.2s; }
+.folder-card:nth-child(3) { animation-delay: 0.3s; }
+.folder-card:nth-child(4) { animation-delay: 0.4s; }
+.folder-card:nth-child(5) { animation-delay: 0.5s; }
+.folder-card:nth-child(6) { animation-delay: 0.6s; }
+.folder-card:nth-child(7) { animation-delay: 0.7s; }
+.folder-card:nth-child(8) { animation-delay: 0.8s; }
+.folder-card:nth-child(9) { animation-delay: 0.9s; }

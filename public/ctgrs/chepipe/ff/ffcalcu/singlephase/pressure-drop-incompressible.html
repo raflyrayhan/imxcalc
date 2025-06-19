@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Single Phase Incompressible Flow - Pressure Drop</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <h1 class="main-heading">Pressure Drop - Single Phase Incompressible Flow</h1>
+  <hr class="header-line">
+  <p class="description" style="text-align: center;">
+    Calculate the pressure drop in a pipe for single-phase incompressible fluid using Darcy-Weisbach equation.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../ffindex.html" class="back-button">← Back to Fluid Flow</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="pressureForm">
+        <div class="form-group">
+          <label for="length">Pipe Length (m):</label>
+          <input type="number" id="length" required>
+        </div>
+
+        <div class="form-group">
+          <label for="diameter">Pipe Diameter (mm):</label>
+          <input type="number" id="diameter" required>
+        </div>
+
+        <div class="form-group">
+          <label for="velocity">Fluid Velocity (m/s):</label>
+          <input type="number" id="velocity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="density">Fluid Density (kg/m³):</label>
+          <input type="number" id="density" required>
+        </div>
+
+        <div class="form-group">
+          <label for="friction">Friction Factor (Darcy f):</label>
+          <input type="number" step="any" id="friction" required>
+        </div>
+
+        <button type="button" onclick="calculatePressureDrop()">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/ff/singlephase/pressure-drop-incompressible.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

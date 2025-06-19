@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minimum Reflux Ratio Estimation</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">Minimum Reflux Ratio Calculator</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="refluxForm" autocomplete="off">
+        <div class="form-group">
+          <label for="xF">Feed composition (x<sub>F</sub>) [0-1]</label>
+          <input type="number" step="0.01" id="xF" value="0.4" required>
+        </div>
+        <div class="form-group">
+          <label for="xD">Distillate composition (x<sub>D</sub>) [0-1]</label>
+          <input type="number" step="0.01" id="xD" value="0.95" required>
+        </div>
+        <div class="form-group">
+          <label for="q">Feed thermal condition (q, 0-1)</label>
+          <input type="number" step="0.01" id="q" value="1" required>
+        </div>
+        <div class="form-group" style="grid-column: 1 / -1;">
+          <label>Equilibrium Curve (input pairs of x and y, comma separated)</label>
+          <textarea id="eqcurve" rows="3" required>0,0; 0.2,0.33; 0.4,0.62; 0.6,0.81; 0.8,0.94; 1,1</textarea>
+        </div>
+        <button type="button" onclick="minRefluxCalc()">Estimate R<sub>min</sub></button>
+      </form>
+      <div id="reflux_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/distjs/reflux.js"></script>
+</body>
+</html>

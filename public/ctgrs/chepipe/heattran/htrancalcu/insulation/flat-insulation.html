@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Insulation Heat Loss - Vertical Flat Surface</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Insulation Heat Loss – Vertical Flat Surface</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Calculate steady-state heat loss through insulated flat vertical surfaces such as walls or tanks.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../heattranindex.html" class="back-button">← Back to Heat Transfer</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="flatInsulForm" onsubmit="return false;">
+        <div class="form-group">
+          <label for="T1">Surface Temperature (°C):</label>
+          <input type="number" id="T1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T2">Ambient Temperature (°C):</label>
+          <input type="number" id="T2" required>
+        </div>
+
+        <div class="form-group">
+          <label for="k">Thermal Conductivity (W/m·K):</label>
+          <input type="number" id="k" required>
+        </div>
+
+        <div class="form-group">
+          <label for="t">Insulation Thickness (mm):</label>
+          <input type="number" id="t" required>
+        </div>
+
+        <div class="form-group">
+          <label for="A">Surface Area (m²):</label>
+          <input type="number" id="A" required>
+        </div>
+
+        <button type="button" onclick="calculateFlatInsulation()">Calculate</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/heattranjs/insulation/flat-insulation.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

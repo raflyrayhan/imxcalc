@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Small Diameter Liquid Orifice Sizing</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+</head>
+<body>
+
+  <h1 class="main-heading">Small Diameter Liquid Orifice Flow Meter</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">Calculate orifice diameter for small liquid flow meters based on pressure drop and discharge coefficient.</p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../instindex.html" class="back-button">← Back to Instrument</a>
+  </div>
+
+  <div class="grid-container" style="justify-content:center;">
+    <div class="folder-card" style="width: 700px;">
+      <form id="orificeForm" onsubmit="return false;">
+        <label for="Q">Flow Rate (m³/h):</label>
+        <input type="number" id="Q" required>
+
+        <label for="P1">Upstream Pressure (kPa):</label>
+        <input type="number" id="P1" required>
+
+        <label for="P2">Downstream Pressure (kPa):</label>
+        <input type="number" id="P2" required>
+
+        <label for="rho">Liquid Density (kg/m³):</label>
+        <input type="number" id="rho" required>
+
+        <label for="Cd">Discharge Coefficient (Cd):</label>
+        <input type="number" id="Cd" value="0.61" step="any" required>
+
+        <button type="submit" onclick="calculateSmallLiquidOrifice()">Calculate</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+  <script src="../../../../../js/instjs/orifice/small-liquid-orifice.js"></script>
+</body>
+</html>

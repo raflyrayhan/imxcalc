@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Compressible Flow - Pipe</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <h1 class="main-heading">Compressible Fluid Flow - Pressure Drop</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Estimate pressure drop in compressible flow using simplified isothermal or ideal gas flow.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../ffindex.html" class="back-button">← Back to Fluid Flow</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="compressForm">
+        <div class="form-group">
+          <label for="length">Pipe Length (m):</label>
+          <input type="number" id="length" required>
+        </div>
+
+        <div class="form-group">
+          <label for="diameter">Pipe Diameter (mm):</label>
+          <input type="number" id="diameter" required>
+        </div>
+
+        <div class="form-group">
+          <label for="massflow">Mass Flow Rate (kg/s):</label>
+          <input type="number" id="massflow" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pressure">Inlet Pressure (kPa):</label>
+          <input type="number" id="pressure" required>
+        </div>
+
+        <div class="form-group">
+          <label for="temp">Gas Temperature (°C):</label>
+          <input type="number" id="temp" required>
+        </div>
+
+        <div class="form-group">
+          <label for="MW">Molecular Weight:</label>
+          <input type="number" id="MW" required>
+        </div>
+
+        <div class="form-group">
+          <label for="friction">Friction Factor (Darcy f):</label>
+          <input type="number" step="any" id="friction" required>
+        </div>
+
+        <button type="button" onclick="calculateCompressible()">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/ff/singlephase/compressible-flow.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

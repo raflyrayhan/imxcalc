@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tank Heating using Steam Coil</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Tank Heating using Steam Coil</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Estimate heat transfer and steam requirement for tank heating using steam coil based on U, area, and latent heat of steam.
+  </p>
+
+  <div style="text-align: center; margin-bottom: 20px;">
+    <a href="../../heattranindex.html" class="back-button">← Back to Heat Transfer</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="steamForm" onsubmit="return false;">
+        <div class="form-group">
+          <label for="U">Overall Heat Transfer Coefficient (W/m²·K):</label>
+          <input type="number" id="U" required>
+        </div>
+
+        <div class="form-group">
+          <label for="A">Coil Heat Transfer Area (m²):</label>
+          <input type="number" id="A" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T_steam">Steam Temperature (°C):</label>
+          <input type="number" id="T_steam" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T_liquid">Liquid Temperature (°C):</label>
+          <input type="number" id="T_liquid" required>
+        </div>
+
+        <div class="form-group">
+          <label for="hfg">Latent Heat of Steam (kJ/kg):</label>
+          <input type="number" id="hfg" value="2257" required>
+        </div>
+
+        <button type="submit" onclick="calculateTankSteam()">Calculate</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/heattranjs/heattransfer/tank-steam.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

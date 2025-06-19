@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Beggs & Brill Two-Phase Flow</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Beggs & Brill Two-Phase Flow</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Calculate pressure drop in a pipe due to two-phase fluid flow using the Beggs & Brill method.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../ffindex.html" class="back-button">← Back to Fluid Flow</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="beggsBrillForm">
+        <div class="form-group">
+          <label for="pipeDiameter">Pipe Diameter (mm):</label>
+          <input type="number" id="pipeDiameter" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pipeLength">Pipe Length (m):</label>
+          <input type="number" id="pipeLength" required>
+        </div>
+
+        <div class="form-group">
+          <label for="inclination">Inclination Angle (°):</label>
+          <input type="number" id="inclination" required>
+        </div>
+
+        <div class="form-group">
+          <label for="gasFlowRate">Gas Flow Rate (m³/h):</label>
+          <input type="number" id="gasFlowRate" required>
+        </div>
+
+        <div class="form-group">
+          <label for="gasDensity">Gas Density (kg/m³):</label>
+          <input type="number" id="gasDensity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="gasViscosity">Gas Viscosity (cP):</label>
+          <input type="number" id="gasViscosity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="liquidFlowRate">Liquid Flow Rate (m³/h):</label>
+          <input type="number" id="liquidFlowRate" required>
+        </div>
+
+        <div class="form-group">
+          <label for="liquidDensity">Liquid Density (kg/m³):</label>
+          <input type="number" id="liquidDensity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="liquidViscosity">Liquid Viscosity (cP):</label>
+          <input type="number" id="liquidViscosity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="surfaceTension">Surface Tension (dyne/cm):</label>
+          <input type="number" id="surfaceTension" required>
+        </div>
+
+        <button type="button" onclick="calculateBeggsBrill()">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/ff/twophase/beggs-brill.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

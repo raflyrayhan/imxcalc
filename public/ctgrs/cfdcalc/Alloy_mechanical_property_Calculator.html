@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estimator Sifat Mekanik Material</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 1100px; margin: auto; }
+    h2, h3 { color: #333; }
+    .material-row { display: flex; gap: 10px; margin-bottom: 10px; }
+    select, input[type=number] { padding: 5px; flex: 1; }
+    button { padding: 8px 15px; margin-top: 10px; cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    #results { margin-top: 20px; }
+    .back-button {
+  margin-top: 80px;
+  display: inline-block;
+  font-size: 1rem;
+  color: #1d72b8;
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid #1d72b8;
+  border-radius: 30px;
+  transition: all 0.25s ease;
+  margin: 0 auto;
+}
+  </style>
+</head>
+<body>
+  <h2>Estimator Sifat Mekanik Material Campuran</h2>
+
+  <label for="type">Jenis Campuran:</label>
+  <select id="type">
+    <option value="alloy">Alloy</option>
+    <option value="composite">Composite</option>
+  </select>
+ 
+  <div id="material-inputs">
+    <div class="material-row">
+      <select class="material-select">
+        <option value="Carbon Steel">Carbon Steel</option>
+        <option value="Low Alloy Steel">Low Alloy Steel</option>
+        <option value="Stainless Steel 304">Stainless Steel 304</option>
+        <option value="Stainless Steel 316">Stainless Steel 316</option>
+        <option value="Stainless Steel 321">Stainless Steel 321</option>
+        <option value="Cast Iron">Cast Iron</option>
+        <option value="Aluminum">Aluminum</option>
+        <option value="Copper">Copper</option>
+        <option value="Brass">Brass</option>
+        <option value="Nickel">Nickel</option>
+        <option value="Titanium">Titanium</option>
+        <option value="PTFE">PTFE</option>
+        <option value="PVC">PVC</option>
+        <option value="HDPE">HDPE</option>
+        <option value="Rubber">Rubber</option>
+        <option value="FRP">FRP</option>
+        <option value="Ceramic">Ceramic</option>
+        <option value="SS 310">SS 310</option>
+        <option value="Inconel">Inconel</option>
+        <option value="Chrome-Moly">Chrome-Moly</option>
+        <option value="SS 316L">SS 316L</option>
+        <option value="Hastelloy">Hastelloy</option>
+        <option value="Al Marine">Al Marine</option>
+        <option value="Cu-Ni">Cu-Ni</option>
+        <option value="SS 304L">SS 304L</option>
+      </select>
+      <input type="number" class="material-percent" placeholder="% komposisi" min="0" max="100" />
+    </div>
+  </div>
+
+  <button onclick="addMaterial()">Tambah Material</button>
+  <button onclick="calculateProperties()">Hitung Sifat Mekanik</button>
+
+  <div id="results"></div>
+
+  <script>
+    const materialDB = {
+      'Carbon Steel': { density: 7850, E: 200, tensile: 400, elongation: 20, hardness: 120, toughness: 150, fatigue: 200 },
+      'Low Alloy Steel': { density: 7800, E: 210, tensile: 480, elongation: 18, hardness: 140, toughness: 160, fatigue: 220 },
+      'Stainless Steel 304': { density: 8000, E: 193, tensile: 520, elongation: 40, hardness: 180, toughness: 180, fatigue: 240 },
+      'Stainless Steel 316': { density: 8000, E: 193, tensile: 530, elongation: 50, hardness: 190, toughness: 200, fatigue: 250 },
+      'Stainless Steel 321': { density: 7900, E: 190, tensile: 515, elongation: 45, hardness: 180, toughness: 195, fatigue: 235 },
+      'Cast Iron': { density: 7200, E: 110, tensile: 250, elongation: 2, hardness: 220, toughness: 30, fatigue: 100 },
+      'Aluminum': { density: 2700, E: 70, tensile: 310, elongation: 12, hardness: 95, toughness: 100, fatigue: 90 },
+      'Copper': { density: 8960, E: 110, tensile: 210, elongation: 30, hardness: 80, toughness: 90, fatigue: 100 },
+      'Brass': { density: 8500, E: 100, tensile: 300, elongation: 25, hardness: 100, toughness: 80, fatigue: 90 },
+      'Nickel': { density: 8900, E: 200, tensile: 400, elongation: 30, hardness: 130, toughness: 160, fatigue: 210 },
+      'Titanium': { density: 4500, E: 116, tensile: 900, elongation: 10, hardness: 160, toughness: 180, fatigue: 510 },
+      'PTFE': { density: 2200, E: 0.5, tensile: 20, elongation: 250, hardness: 50, toughness: 10, fatigue: 5 },
+      'PVC': { density: 1380, E: 3.2, tensile: 50, elongation: 20, hardness: 70, toughness: 15, fatigue: 10 },
+      'HDPE': { density: 950, E: 0.8, tensile: 25, elongation: 500, hardness: 60, toughness: 12, fatigue: 8 },
+      'Rubber': { density: 1100, E: 0.01, tensile: 5, elongation: 600, hardness: 40, toughness: 5, fatigue: 2 },
+      'FRP': { density: 1850, E: 20, tensile: 140, elongation: 2, hardness: 120, toughness: 30, fatigue: 70 },
+      'Ceramic': { density: 3500, E: 300, tensile: 80, elongation: 0.5, hardness: 800, toughness: 5, fatigue: 20 },
+      'SS 310': { density: 7850, E: 180, tensile: 560, elongation: 45, hardness: 190, toughness: 200, fatigue: 260 },
+      'Inconel': { density: 8470, E: 205, tensile: 960, elongation: 25, hardness: 220, toughness: 250, fatigue: 300 },
+      'Chrome-Moly': { density: 7850, E: 215, tensile: 600, elongation: 22, hardness: 210, toughness: 240, fatigue: 280 },
+      'SS 316L': { density: 8000, E: 193, tensile: 485, elongation: 55, hardness: 180, toughness: 210, fatigue: 245 },
+      'Hastelloy': { density: 8900, E: 210, tensile: 790, elongation: 40, hardness: 220, toughness: 300, fatigue: 290 },
+      'Al Marine': { density: 2700, E: 69, tensile: 340, elongation: 15, hardness: 100, toughness: 110, fatigue: 95 },
+      'Cu-Ni': { density: 8800, E: 130, tensile: 350, elongation: 30, hardness: 120, toughness: 150, fatigue: 160 },
+      'SS 304L': { density: 8000, E: 193, tensile: 470, elongation: 52, hardness: 175, toughness: 200, fatigue: 230 }
+    };
+
+    function addMaterial() {
+      const container = document.getElementById('material-inputs');
+      const div = document.createElement('div');
+      div.className = 'material-row';
+      div.innerHTML = document.querySelector('.material-row').innerHTML;
+      container.appendChild(div);
+    }
+
+    function calculateProperties() {
+      const selects = document.querySelectorAll('.material-select');
+      const percents = document.querySelectorAll('.material-percent');
+      const total = Array.from(percents).reduce((sum, input) => sum + Number(input.value), 0);
+
+      if (total !== 100) {
+        alert('Total komposisi harus 100%');
+        return;
+      }
+
+      let properties = {
+        density: 0, E: 0, tensile: 0, elongation: 0,
+        hardness: 0, toughness: 0, fatigue: 0
+      };
+
+      for (let i = 0; i < selects.length; i++) {
+        const mat = selects[i].value;
+        const fraction = Number(percents[i].value) / 100;
+
+        for (const prop in properties) {
+          properties[prop] += materialDB[mat][prop] * fraction;
+        }
+      }
+
+      document.getElementById('results').innerHTML = `
+        <h3>Output Estimasi Sifat Mekanik Campuran</h3>
+        <table>
+          <tr><th>Sifat Mekanik</th><th>Satuan</th><th>Hasil</th><th>Penjelasan</th></tr>
+          <tr><td>Tensile Strength (UTS)</td><td>MPa</td><td>${properties.tensile.toFixed(2)}</td><td>Kekuatan tarik maksimum sebelum putus</td></tr>
+          <tr><td>Elongation</td><td>%</td><td>${properties.elongation.toFixed(2)}</td><td>Persentase pemanjangan sebelum putus</td></tr>
+          <tr><td>Young's Modulus</td><td>GPa</td><td>${properties.E.toFixed(2)}</td><td>Rasio tegangan terhadap regangan (kekakuan)</td></tr>
+          <tr><td>Hardness</td><td>HB (estimasi)</td><td>${properties.hardness.toFixed(2)}</td><td>Kekerasan material (Brinell)</td></tr>
+          <tr><td>Toughness</td><td>kJ/m²</td><td>${properties.toughness.toFixed(2)}</td><td>Energi yang diserap sebelum patah</td></tr>
+          <tr><td>Fatigue Strength</td><td>MPa</td><td>${properties.fatigue.toFixed(2)}</td><td>Daya tahan terhadap beban siklik</td></tr>
+          <tr><td>Density</td><td>kg/m³</td><td>${properties.density.toFixed(2)}</td><td>Massa jenis campuran</td></tr>
+        </table>
+      `;
+    }
+  </script>
+
+  <div class="back-button" style="text-align: left; margin-top: 30px;">
+                         <a href="../cfdcalc/cfdindex.html" class="back-button">← Back to Main Page</a>
+                    </div>
+</body>
+</html>

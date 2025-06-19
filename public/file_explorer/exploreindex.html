@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>File Upload & Rename</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Load Google API safely -->
+  <script src="https://apis.google.com/js/api.js" async defer></script>
+
+  <script>
+    // Inisialisasi GAPI setelah api.js siap
+    function gapiInit() {
+      if (!window.gapi) {
+        console.error("❌ GAPI not loaded.");
+        return;
+      }
+
+      gapi.load('client:auth2', () => {
+        gapi.client.init({
+          clientId: '415024272495-5ofeh02nijfkf2chgkv9oao7l0n73r6u.apps.googleusercontent.com',
+          scope: 'https://www.googleapis.com/auth/drive.file'
+        }).then(() => {
+          console.log("✅ Google API initialized");
+        }).catch(err => {
+          console.error("❌ Failed to init Google API", err);
+        });
+      });
+    }
+
+    window.addEventListener('load', () => {
+      if (window.gapi && gapi.load) {
+        gapiInit();
+      } else {
+        console.warn("⚠️ Google API (gapi) not yet ready.");
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>📁 File Upload & Rename to Google Drive</h1>
+  </header>
+
+  <div class="container">
+    <section class="form-section">
+      <div class="form-row">
+        <input id="input_project" placeholder="Project">
+        <select id="input_department">
+          <option>GEN</option><option>ENG</option><option>PRJ</option>
+        </select>
+        <select id="input_discipline">
+          <option>MEC</option><option>CIV</option><option>PIP</option>
+        </select>
+        <input id="input_sequence" placeholder="Sequence">
+      </div>
+      <div class="form-row">
+        <select id="input_doc_type">
+          <option>DRW</option><option>SPC</option><option>RPT</option>
+        </select>
+        <input id="input_doc_title" placeholder="Title">
+        <input id="input_revision" placeholder="Rev">
+        <select id="input_status">
+          <option>IFR</option><option>IFA</option><option>IFC</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <input id="input_folder" placeholder="Target Folder in Drive (e.g. Documents)">
+      </div>
+    </section>
+
+    <section class="button-section">
+      <button id="uploadBtn">⬆️ Upload File</button>
+      <button id="renameBtn">✏️ Rename & Upload to Drive</button>
+    </section>
+
+    <section class="preview-section">
+      <h3>📄 Preview</h3>
+      <div id="previewArea">No file selected.</div>
+      <p><strong>New File Name:</strong> <span id="output_file_name">[Waiting]</span></p>
+    </section>
+
+    <section>
+      <h3>📂 Files in Google Drive</h3>
+      <ul id="driveFileList"></ul>
+    </section>
+  </div>
+
+  <input type="file" id="fileUpload" hidden />
+
+  <!-- Firebase & Logic -->
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>

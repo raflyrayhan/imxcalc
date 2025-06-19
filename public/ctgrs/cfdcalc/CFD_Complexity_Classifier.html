@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CFD Complexity Classifier</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body { padding: 20px; }
+    .result-box { margin-top: 20px; font-size: 1.2rem; font-weight: bold; }
+    .logo { max-width: 150px; margin-bottom: 20px; }
+    .back-button {
+  margin-top: 80px;
+  display: inline-block;
+  font-size: 1rem;
+  color: #1d72b8;
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid #1d72b8;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  margin: 0 auto;
+}
+  </style>
+</head>
+<body>
+  <div style="text-align: left; margin-bottom: 80px;">
+                         <a href="../cfdcalc/cfdindex.html" class="back-button">← Back to Main Page</a>
+                    </div>
+  <div class="container">
+    <h2 class="mb-4">CFD Study Complexity Classifier</h2>
+    <form id="cfdForm">
+      <div class="mb-3">
+        <label class="form-label">1. Geometry Complexity</label>
+        <select class="form-select" id="geometry">
+          <option value="1">Simple (2D/axisymmetric)</option>
+          <option value="2">Medium (3D with moderate detail)</option>
+          <option value="3">Advanced (complex 3D with internals)</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">2. Physics Involved</label>
+        <select class="form-select" id="physics">
+          <option value="1">Simple (single-phase, steady)</option>
+          <option value="2">Medium (multiphase, compressible, heat transfer)</option>
+          <option value="3">Advanced (combustion, FSI, moving mesh)</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">3. Solver & Turbulence Model</label>
+        <select class="form-select" id="solver">
+          <option value="1">Simple (laminar or basic k-epsilon)</option>
+          <option value="2">Medium (advanced RANS, LES)</option>
+          <option value="3">Advanced (hybrid/DNS/custom)</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">4. Boundary & Mesh Complexity</label>
+        <select class="form-select" id="mesh">
+          <option value="1">Simple (structured mesh, basic BCs)</option>
+          <option value="2">Medium (snappyHexMesh, complex BCs)</option>
+          <option value="3">Advanced (dynamic/sliding mesh)</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">5. Post-processing & Validation</label>
+        <select class="form-select" id="post">
+          <option value="1">Simple (basic plots)</option>
+          <option value="2">Medium (performance analysis)</option>
+          <option value="3">Advanced (validation/optimization)</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary me-2" onclick="calculateComplexity()">Classify Study</button>
+      <button type="button" class="btn btn-success" onclick="downloadPDF()">Download PDF</button>
+    </form>
+    <div id="result" class="result-box"></div>
+  </div>
+  <script>
+    function calculateComplexity() {
+      const scores = [
+        parseInt(document.getElementById('geometry').value),
+        parseInt(document.getElementById('physics').value),
+        parseInt(document.getElementById('solver').value),
+        parseInt(document.getElementById('mesh').value),
+        parseInt(document.getElementById('post').value)
+      ];
+      const avg = scores.reduce((a, b) => a + b, 0) / scores.length;
+      let level = '';
+      if (avg <= 1.5) level = 'Simple';
+      else if (avg <= 2.2) level = 'Medium';
+      else level = 'Advanced';
+      document.getElementById('result').innerText = `CFD Study Complexity: ${level}`;
+      return level;
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const level = calculateComplexity();
+      const date = new Date().toLocaleString();
+
+      doc.setFontSize(16);
+      doc.text("IMX Engineering", 20, 20);
+      doc.setFontSize(12);
+      doc.text(`Report Date: ${date}`, 150, 20, { align: 'right' });
+
+      doc.setFontSize(14);
+      doc.text("CFD Study Complexity Classification Report", 20, 35);
+      doc.setFontSize(12);
+
+      doc.text(`1. Geometry Complexity: ${document.getElementById('geometry').selectedOptions[0].text}`, 20, 50);
+      doc.text(`2. Physics Involved: ${document.getElementById('physics').selectedOptions[0].text}`, 20, 60);
+      doc.text(`3. Solver & Turbulence Model: ${document.getElementById('solver').selectedOptions[0].text}`, 20, 70);
+      doc.text(`4. Boundary & Mesh Complexity: ${document.getElementById('mesh').selectedOptions[0].text}`, 20, 80);
+      doc.text(`5. Post-processing & Validation: ${document.getElementById('post').selectedOptions[0].text}`, 20, 90);
+
+      doc.setFontSize(14);
+      doc.setTextColor(0, 102, 204);
+      doc.text(`Classified CFD Complexity: ${level}`, 20, 110);
+
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(10);
+      doc.text("Authorized By:", 20, 140);
+      doc.text("______________________", 20, 155);
+      doc.text("IMX Engineering Signature", 20, 165);
+
+      doc.save("CFD_Study_Classification.pdf");
+    }
+  </script>
+</body>
+</html>

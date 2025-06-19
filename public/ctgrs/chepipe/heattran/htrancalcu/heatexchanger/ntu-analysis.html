@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Heat Exchanger Analysis (ε – NTU)</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Heat Exchanger Analysis (ε – NTU Method)</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Calculate heat exchanger effectiveness, NTU, and heat transfer rate using ε–NTU method.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../heattranindex.html" class="back-button">← Back to Heat Transfer</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="ntuForm">
+
+        <h3>Hot Stream</h3>
+        <div class="form-group">
+          <label for="mh">Mass Flow Rate (kg/h):</label>
+          <input type="number" id="mh" required>
+        </div>
+        <div class="form-group">
+          <label for="cph">Specific Heat Cp (J/kg·K):</label>
+          <input type="number" id="cph" required>
+        </div>
+        <div class="form-group">
+          <label for="Th_in">Inlet Temperature (°C):</label>
+          <input type="number" id="Th_in" required>
+        </div>
+        <div class="form-group">
+          <label for="Th_out">Outlet Temperature (°C):</label>
+          <input type="number" id="Th_out" required>
+        </div>
+
+        <h3>Cold Stream</h3>
+        <div class="form-group">
+          <label for="mc">Mass Flow Rate (kg/h):</label>
+          <input type="number" id="mc" required>
+        </div>
+        <div class="form-group">
+          <label for="cpc">Specific Heat Cp (J/kg·K):</label>
+          <input type="number" id="cpc" required>
+        </div>
+        <div class="form-group">
+          <label for="Tc_in">Inlet Temperature (°C):</label>
+          <input type="number" id="Tc_in" required>
+        </div>
+        <div class="form-group">
+          <label for="Tc_out">Outlet Temperature (°C):</label>
+          <input type="number" id="Tc_out" required>
+        </div>
+
+        <h3>Exchanger Parameters</h3>
+        <div class="form-group">
+          <label for="A">Heat Transfer Area (m²):</label>
+          <input type="number" id="A" required>
+        </div>
+        <div class="form-group">
+          <label for="U">Overall Heat Transfer Coefficient (W/m²·K):</label>
+          <input type="number" id="U" required>
+        </div>
+        <div class="form-group">
+          <label for="flowType">Flow Configuration:</label>
+          <select id="flowType">
+            <option value="counter">Counterflow</option>
+            <option value="parallel">Parallel flow</option>
+          </select>
+        </div>
+
+        <button type="button" onclick="calculateNTU()">Calculate</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/heattranjs/heatexchanger/ntu-analysis.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

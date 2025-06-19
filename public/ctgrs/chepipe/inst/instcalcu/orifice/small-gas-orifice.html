@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Small Diameter Gas Orifice Sizing</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+</head>
+<body>
+
+  <h1 class="main-heading">Small Diameter Gas Orifice Sizing</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">Calculate orifice diameter for small gas flow meters using upstream/downstream pressure and temperature.</p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../instindex.html" class="back-button">← Back to Instrument</a>
+  </div>
+
+  <div class="grid-container" style="justify-content:center;">
+    <div class="folder-card" style="width: 700px;">
+      <form id="orificeForm" onsubmit="return false;">
+        <label for="flowRate">Flow Rate (Nm³/h):</label>
+        <input type="number" id="flowRate" required>
+
+        <label for="inletPressure">Upstream Pressure (kPa):</label>
+        <input type="number" id="inletPressure" required>
+
+        <label for="outletPressure">Downstream Pressure (kPa):</label>
+        <input type="number" id="outletPressure" required>
+
+        <label for="temp">Gas Temperature (°C):</label>
+        <input type="number" id="temp" required>
+
+        <label for="mw">Molecular Weight:</label>
+        <input type="number" id="mw" value="28.96" required>
+
+        <label for="Cd">Discharge Coefficient (Cd):</label>
+        <input type="number" id="Cd" value="0.61" step="any" required>
+
+        <button type="submit" onclick="calculateSmallGasOrifice()">Calculate</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+  <script src="../../../../../js/instjs/orifice/small-gas-orifice.js"></script>
+</body>
+</html>

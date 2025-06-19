@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculate LMTD</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Calculate Log Mean Temperature Difference (LMTD)</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Calculate the log mean temperature difference for shell and tube exchangers in counter-current or co-current (parallel) flow.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../heattranindex.html" class="back-button">← Back to Heat Transfer</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="lmtdForm" onsubmit="return false;">
+        <div class="form-group">
+          <label for="Th_in">Hot Fluid Inlet Temp (°C):</label>
+          <input type="number" id="Th_in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="Th_out">Hot Fluid Outlet Temp (°C):</label>
+          <input type="number" id="Th_out" required>
+        </div>
+
+        <div class="form-group">
+          <label for="Tc_in">Cold Fluid Inlet Temp (°C):</label>
+          <input type="number" id="Tc_in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="Tc_out">Cold Fluid Outlet Temp (°C):</label>
+          <input type="number" id="Tc_out" required>
+        </div>
+
+        <div class="form-group">
+          <label for="flowType">Flow Configuration:</label>
+          <select id="flowType">
+            <option value="counter">Counter-current flow</option>
+            <option value="parallel">Co-current (parallel) flow</option>
+          </select>
+        </div>
+
+        <button type="submit" onclick="calculateLMTD()">Calculate</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/heattranjs/lmtdjs/calculate-lmtd.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

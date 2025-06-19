@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cooling Load Calculator – Office Edition</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+  .back-button {
+  display: inline-block;
+  font-size: 1rem;
+  color: #1d72b8;
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid #1d72b8;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  margin: 0 auto;
+}
+</style>
+<body class="bg-light">
+  <div class="container py-5">
+    <h2 class="mb-4 text-primary">Cooling Load Calculator – Office Edition</h2>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label for="area" class="form-label">Area (m²)</label>
+        <input type="number" class="form-control" id="area" value="100">
+      </div>
+      <div class="col-md-6">
+        <label for="wallArea" class="form-label">Wall Area (m²)</label>
+        <input type="number" class="form-control" id="wallArea" value="150">
+      </div>
+      <div class="col-md-6">
+        <label for="windowArea" class="form-label">Window Area (m²)</label>
+        <input type="number" class="form-control" id="windowArea" value="30">
+      </div>
+      <div class="col-md-6">
+        <label for="people" class="form-label">Number of People</label>
+        <input type="number" class="form-control" id="people" value="25">
+      </div>
+      <div class="col-md-6">
+        <label for="lights" class="form-label">Number of Lights</label>
+        <input type="number" class="form-control" id="lights" value="40">
+      </div>
+      <div class="col-md-6">
+        <label for="equipmentLoad" class="form-label">Total Office Equipment Load (kW)</label>
+        <input type="number" class="form-control" id="equipmentLoad" value="8">
+      </div>
+      <div class="col-md-6">
+        <label for="outsideTemp" class="form-label">Outside Temp (°C)</label>
+        <input type="number" class="form-control" id="outsideTemp" value="33">
+      </div>
+      <div class="col-md-6">
+        <label for="insideTemp" class="form-label">Inside Temp (°C)</label>
+        <input type="number" class="form-control" id="insideTemp" value="24">
+      </div>
+    </div>
+    <button onclick="calculateLoad()" class="btn btn-primary mt-4">Calculate Cooling Load</button>
+
+    <div class="table-responsive mt-4" id="resultSection" style="display:none;">
+      <table class="table table-bordered table-striped">
+        <thead class="table-light">
+          <tr><th>Component</th><th>Load (W)</th></tr>
+        </thead>
+        <tbody id="resultBody"></tbody>
+        <tfoot>
+          <tr><th>Total Load</th><th id="totalLoad"></th></tr>
+          <tr><th>Final Load (with 20% margin)</th><th id="finalLoad"></th></tr>
+          <tr><th>In TR</th><th id="finalTR"></th></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="mt-5">
+      <h5 class="text-secondary">References</h5>
+      <ul>
+        <li>ASHRAE Handbook – Fundamentals, Chapter 18: Nonresidential Cooling and Heating Load Calculations</li>
+        <li>ASHRAE Standard 183: Peak Cooling and Heating Load Calculations in Buildings Except Low-Rise Residential Buildings</li>
+        <li>ASHRAE Standard 62.1: Ventilation for Acceptable Indoor Air Quality</li>
+        <li>ISO 52016-1: Energy performance of buildings — Calculation of energy needs for heating and cooling</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function calculateLoad() {
+      const area = parseFloat(document.getElementById('area').value);
+      const wallArea = parseFloat(document.getElementById('wallArea').value);
+      const windowArea = parseFloat(document.getElementById('windowArea').value);
+      const people = parseInt(document.getElementById('people').value);
+      const lights = parseInt(document.getElementById('lights').value);
+      const equipmentLoad = parseFloat(document.getElementById('equipmentLoad').value);
+      const outsideTemp = parseFloat(document.getElementById('outsideTemp').value);
+      const insideTemp = parseFloat(document.getElementById('insideTemp').value);
+      const deltaT = outsideTemp - insideTemp;
+
+      const sensiblePeople = people * 75;
+      const latentPeople = people * 55;
+      const lighting = lights * 10;
+      const wallLoad = wallArea * 2.3 * deltaT;
+      const solarGain = windowArea * 0.85 * 500;
+      const ventilation = 0.05 * 1.2 * 1000 * 20;
+      const equipment = equipmentLoad * 1000;
+
+      const total = sensiblePeople + latentPeople + lighting + wallLoad + solarGain + ventilation + equipment;
+      const finalLoad = total * 1.2;
+      const finalTR = finalLoad / 3517;
+
+      const resultBody = document.getElementById('resultBody');
+      resultBody.innerHTML = `
+        <tr><td>Sensible Heat (People)</td><td>${sensiblePeople.toFixed(2)}</td></tr>
+        <tr><td>Latent Heat (People)</td><td>${latentPeople.toFixed(2)}</td></tr>
+        <tr><td>Lighting</td><td>${lighting.toFixed(2)}</td></tr>
+        <tr><td>Wall Conduction</td><td>${wallLoad.toFixed(2)}</td></tr>
+        <tr><td>Solar Gain</td><td>${solarGain.toFixed(2)}</td></tr>
+        <tr><td>Ventilation</td><td>${ventilation.toFixed(2)}</td></tr>
+        <tr><td>Office Equipment</td><td>${equipment.toFixed(2)}</td></tr>
+      `;
+
+      document.getElementById('totalLoad').innerText = total.toFixed(2) + ' W';
+      document.getElementById('finalLoad').innerText = finalLoad.toFixed(2) + ' W';
+      document.getElementById('finalTR').innerText = finalTR.toFixed(2) + ' TR';
+      document.getElementById('resultSection').style.display = 'block';
+    }
+  </script>
+  <div style="text-align: left; margin-bottom: 30px;">
+                         <a href="../cfdcalc/cfdindex.html" class="back-button">← Back to Main Page</a>
+                    </div>
+</body>
+</html>

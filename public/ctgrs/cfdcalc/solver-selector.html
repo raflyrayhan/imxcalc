@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OpenFOAM Solver Selector</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+</head>
+<style>
+  .back-button {
+  display: inline-block;
+  font-size: 1rem;
+  color: #1d72b8;
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid #1d72b8;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  margin: 0 auto;
+}
+</style>
+<body class="bg-light">
+
+  <div class="container py-5">
+    <h2 class="text-center mb-4">OpenFOAM CFD Solver Selector</h2>
+
+    <form id="solverForm" class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Compressibility</label>
+        <select class="form-select" id="compressibility">
+          <option value="incompressible">Incompressible</option>
+          <option value="compressible">Compressible</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Flow Type</label>
+        <select class="form-select" id="flowType">
+          <option value="single">Single-phase</option>
+          <option value="multiphase">Multiphase</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Heat Transfer?</label>
+        <select class="form-select" id="heatTransfer">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Time Dependency</label>
+        <select class="form-select" id="time">
+          <option value="steady">Steady-State</option>
+          <option value="transient">Transient</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Turbulence</label>
+        <select class="form-select" id="turbulence">
+          <option value="laminar">Laminar</option>
+          <option value="turbulent">Turbulent</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Special Requirements</label>
+        <select class="form-select" id="special">
+          <option value="none">None</option>
+          <option value="chemical">Chemical Reaction</option>
+          <option value="porous">Porous Media</option>
+          <option value="region">Multi-Region</option>
+        </select>
+      </div>
+
+      <div class="col-12 text-center">
+        <button type="button" onclick="recommendSolver()" class="btn btn-primary mt-3">Recommend Solver</button>
+      </div>
+    </form>
+
+    <div id="result" class="alert alert-info mt-4 text-center" style="display:none;"></div>
+  </div>
+
+  <script>
+    function recommendSolver() {
+      const compress = document.getElementById("compressibility").value;
+      const phase = document.getElementById("flowType").value;
+      const heat = document.getElementById("heatTransfer").value;
+      const time = document.getElementById("time").value;
+      const special = document.getElementById("special").value;
+
+      let solver = "Unable to determine.";
+
+      if (special === "chemical") {
+        solver = "reactingFoam";
+      } else if (special === "porous") {
+        solver = "reactingPorousSimpleFoam";
+      } else if (special === "region") {
+        solver = "chtMultiRegionFoam";
+      } else if (phase === "multiphase") {
+        solver = compress === "compressible" ? "twoPhaseEulerFoam" : "interFoam";
+      } else if (compress === "incompressible" && heat === "no") {
+        solver = time === "steady" ? "simpleFoam" : "pisoFoam";
+      } else if (compress === "compressible" && heat === "no") {
+        solver = time === "steady" ? "rhoSimpleFoam" : "rhoPimpleFoam";
+      } else if (heat === "yes" && compress === "incompressible") {
+        solver = time === "steady" ? "buoyantSimpleFoam" : "buoyantPimpleFoam";
+      } else if (heat === "yes" && compress === "compressible") {
+        solver = "chtMultiRegionFoam";
+      }
+
+      const resultDiv = document.getElementById("result");
+      resultDiv.style.display = "block";
+      resultDiv.innerHTML = `<strong>Recommended Solver:</strong> ${solver}`;
+    }
+  </script>
+  <div style="text-align: left; margin-bottom: 30px;">
+                         <a href="../cfdcalc/cfdindex.html" class="back-button">← Back to Main Page</a>
+                    </div>
+</body>
+</html>

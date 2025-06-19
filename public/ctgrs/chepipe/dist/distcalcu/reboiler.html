@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reboiler Duty Estimation</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">Reboiler Duty Estimation</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="reboilerForm" autocomplete="off">
+        <div class="form-group">
+          <label for="V">Vapor Flowrate (V, <b>kg/h</b>)</label>
+          <input type="number" step="0.01" id="V" value="5000" required>
+        </div>
+        <div class="form-group">
+          <label for="lambda">Latent Heat of Vaporization (λ, <b>kJ/kg</b>)</label>
+          <input type="number" step="0.01" id="lambda" value="2200" required>
+        </div>
+        <div class="form-group">
+          <label for="unit">Result Unit</label>
+          <select id="unit">
+            <option value="kW">kW</option>
+            <option value="kJ/h">kJ/h</option>
+            <option value="MMkcal/h">MMkcal/h</option>
+          </select>
+        </div>
+        <button type="button" onclick="calcReboilerDuty()">Estimate Q<sub>reb</sub></button>
+      </form>
+      <div id="reboiler_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/distjs/reboiler.js"></script>
+</body>
+</html>

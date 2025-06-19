@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "imxcalc"
+  },
+  "targets": {
+    "imx-calc-tools": {
+      "hosting": {
+        "site": [
+          "imx-calc-tools"
+        ]
+      }
+    }
+  }
+}

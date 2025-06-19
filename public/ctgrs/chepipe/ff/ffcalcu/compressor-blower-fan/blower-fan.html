@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blower & Fan Power Calculation</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Blower & Fan Power Calculation</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Calculate the power required for air movement using fan parameters and efficiencies.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../ffindex.html" class="back-button">← Back to Fluid Flow</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="fanForm">
+        <div class="form-group">
+          <label for="flow">Air Flow (CFM):</label>
+          <input type="number" id="flow" required>
+        </div>
+
+        <div class="form-group">
+          <label for="sp">Static Pressure (inch H₂O):</label>
+          <input type="number" id="sp" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fanEff">Fan Efficiency (%):</label>
+          <input type="number" id="fanEff" value="70" required>
+        </div>
+
+        <div class="form-group">
+          <label for="beltEff">Belt Efficiency (%):</label>
+          <input type="number" id="beltEff" value="95" required>
+        </div>
+
+        <div class="form-group">
+          <label for="motorEff">Motor Efficiency (%):</label>
+          <input type="number" id="motorEff" value="90" required>
+        </div>
+
+        <div class="form-group">
+          <label for="driveEff">Drive Efficiency (%):</label>
+          <input type="number" id="driveEff" value="98" required>
+        </div>
+
+        <button type="button" onclick="calculateFanPower()">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/ff/compressor-blower-fan/blower-fan.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

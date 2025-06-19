@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Two Phase Flow in Horizontal Pipe</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Two Phase Flow in Horizontal Pipe</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Estimate pressure drop and determine flow regime for two-phase flow in a horizontal pipe.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../ffindex.html" class="back-button">← Back to Fluid Flow</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="horizontalFlowForm">
+        <div class="form-group">
+          <label for="diameter">Pipe Diameter (mm):</label>
+          <input type="number" id="diameter" required>
+        </div>
+
+        <div class="form-group">
+          <label for="length">Pipe Length (m):</label>
+          <input type="number" id="length" required>
+        </div>
+
+        <div class="form-group">
+          <label for="gasFlow">Gas Flowrate (m³/h):</label>
+          <input type="number" id="gasFlow" required>
+        </div>
+
+        <div class="form-group">
+          <label for="liquidFlow">Liquid Flowrate (m³/h):</label>
+          <input type="number" id="liquidFlow" required>
+        </div>
+
+        <div class="form-group">
+          <label for="gasDensity">Gas Density (kg/m³):</label>
+          <input type="number" id="gasDensity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="liquidDensity">Liquid Density (kg/m³):</label>
+          <input type="number" id="liquidDensity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="gasViscosity">Gas Viscosity (cP):</label>
+          <input type="number" id="gasViscosity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="liquidViscosity">Liquid Viscosity (cP):</label>
+          <input type="number" id="liquidViscosity" required>
+        </div>
+
+        <button type="button" onclick="calculateHorizontalTwoPhase()">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/ff/twophase/horizontal-flow.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

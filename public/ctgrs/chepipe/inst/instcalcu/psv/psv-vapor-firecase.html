@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PSV Sizing - Vapor Filled Vessel (Fire Case)</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+</head>
+<body>
+
+<h1 class="main-heading">PSV Sizing – Fire Case (Gas/Vapor Filled Vessel)</h1>
+<hr class="header-line" />
+<p class="description" style="text-align: center;">Calculate PSV required orifice area for gas/vapor-filled vessels in fire exposure using API 520 method.</p>
+
+<div style="text-align:center; margin-bottom: 20px;">
+  <a href="../../instindex.html" class="back-button">← Back to Instrument</a>
+</div>
+
+<div class="grid-container" style="justify-content: center;">
+  <div class="folder-card" style="width: 650px;">
+    <form id="psvVaporForm" onsubmit="return false;">
+      <label for="Q">Heat Absorbed (Q) in kW:</label>
+      <input type="number" id="Q" required>
+
+      <label for="Cp">Gas Specific Heat Ratio (k):</label>
+      <input type="number" id="Cp" value="1.33" required>
+
+      <label for="T">Relieving Temperature (K):</label>
+      <input type="number" id="T" value="500" required>
+
+      <label for="MW">Molecular Weight:</label>
+      <input type="number" id="MW" value="18" required>
+
+      <label for="Kd">Discharge Coefficient (Kd):</label>
+      <input type="number" id="Kd" value="0.975" required>
+
+      <label for="Z">Compressibility Factor (Z):</label>
+      <input type="number" id="Z" value="1.0" required>
+
+      <label for="P">Relieving Pressure (bar abs):</label>
+      <input type="number" id="P" required>
+
+      <button type="submit" onclick="calculatePsvVapor()">Calculate</button>
+    </form>
+
+    <div id="result" style="margin-top: 20px;"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>&copy; PT. Infimech Harmoni Teknologi</p>
+</footer>
+
+<script src="../../../../../js/instjs/psvjs/psv-vapor-firecase.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Packed Bed - Ergun Equation</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <h1 class="main-heading">Packed Bed Pressure Drop - Ergun Equation</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Calculate pressure drop across a packed bed using Ergun equation for single-phase flow through granular media.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../ffindex.html" class="back-button">← Back to Fluid Flow</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="ergunForm">
+        <div class="form-group">
+          <label for="length">Bed Length (m):</label>
+          <input type="number" id="length" required>
+        </div>
+
+        <div class="form-group">
+          <label for="velocity">Superficial Velocity (m/s):</label>
+          <input type="number" id="velocity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="diameter">Particle Diameter (mm):</label>
+          <input type="number" id="diameter" required>
+        </div>
+
+        <div class="form-group">
+          <label for="porosity">Porosity (ε):</label>
+          <input type="number" step="any" id="porosity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="density">Fluid Density (kg/m³):</label>
+          <input type="number" id="density" required>
+        </div>
+
+        <div class="form-group">
+          <label for="viscosity">Fluid Viscosity (Pa·s):</label>
+          <input type="number" step="any" id="viscosity" required>
+        </div>
+
+        <button type="button" onclick="calculateErgun()">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/ff/singlephase/packed-bed-ergun.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

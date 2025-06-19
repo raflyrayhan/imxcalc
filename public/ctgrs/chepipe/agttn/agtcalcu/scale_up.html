@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Agitator Scale-Up Estimation</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">Agitator Scale-Up Estimation</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="scaleupForm" autocomplete="off">
+        <div class="form-group">
+          <label for="d1">Lab/Pilot Impeller Diameter (D₁, m)</label>
+          <input type="number" step="0.001" id="d1" value="0.2" required>
+        </div>
+        <div class="form-group">
+          <label for="n1">Lab/Pilot Impeller Speed (N₁, rpm)</label>
+          <input type="number" step="0.1" id="n1" value="300" required>
+        </div>
+        <div class="form-group">
+          <label for="d2">Production Impeller Diameter (D₂, m)</label>
+          <input type="number" step="0.001" id="d2" value="1.0" required>
+        </div>
+        <div class="form-group">
+          <label for="scaleType">Scale-up Parameter</label>
+          <select id="scaleType">
+            <option value="tip">Constant Tip Speed</option>
+            <option value="powervol">Constant Power/Volume</option>
+          </select>
+        </div>
+        <button type="button" onclick="scaleUpAgitator()">Estimate</button>
+      </form>
+      <div id="scaleup_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/agttnjs/scale_up.js"></script>
+</body>
+</html>

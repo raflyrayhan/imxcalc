@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shortcut Heat Exchanger Sizing</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <h1 class="main-heading">Shortcut Heat Exchanger Sizing</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Quick estimate of required surface area based on Q, U, and LMTD.
+  </p>
+
+  <div style="text-align: center; margin-bottom: 30px;">
+    <a href="../../heattranindex.html" class="back-button">← Back to Heat Transfer</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="shortcutForm">
+        <div class="form-group">
+          <label for="Q">Heat Duty (kW):</label>
+          <input type="number" id="Q" required>
+        </div>
+
+        <div class="form-group">
+          <label for="U">Overall Heat Transfer Coefficient (W/m²·K):</label>
+          <input type="number" id="U" required>
+        </div>
+
+        <div class="form-group">
+          <label for="LMTD">Log Mean Temperature Difference (K):</label>
+          <input type="number" id="LMTD" required>
+        </div>
+
+        <button type="button" onclick="calculateShortcut()">Calculate</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/heattranjs/heatexchanger/shortcut-sizing.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

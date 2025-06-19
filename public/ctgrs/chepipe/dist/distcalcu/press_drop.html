@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Packed Column Pressure Drop Calculator</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">Packed Column Pressure Drop Calculator</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="pressDropForm" autocomplete="off">
+        <div class="form-group">
+          <label for="G">Superficial Gas Mass Velocity (G, kg/m²·s)</label>
+          <input type="number" step="0.01" id="G" value="1.2" required>
+        </div>
+        <div class="form-group">
+          <label for="rho_g">Gas Density (ρ<sub>g</sub>, kg/m³)</label>
+          <input type="number" step="0.01" id="rho_g" value="1.3" required>
+        </div>
+        <div class="form-group">
+          <label for="Z">Packing Height (Z, m)</label>
+          <input type="number" step="0.01" id="Z" value="8" required>
+        </div>
+        <div class="form-group">
+          <label for="dp">Packing Size (d<sub>p</sub>, m)</label>
+          <input type="number" step="0.001" id="dp" value="0.025" required>
+        </div>
+        <div class="form-group">
+          <label for="C">Empirical Constant (C, 0.2–0.5)</label>
+          <input type="number" step="0.01" id="C" value="0.3" required>
+        </div>
+        <button type="button" onclick="pressureDropPacked()">Calculate ΔP</button>
+      </form>
+      <div id="pd_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/distjs/press_drop.js"></script>
+</body>
+</html>

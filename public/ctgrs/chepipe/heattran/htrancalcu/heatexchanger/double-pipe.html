@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Double Pipe Heat Exchanger</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Double Pipe Heat Exchanger</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Calculate required area, overall U value, and heat duty for double pipe heat exchangers.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../heattranindex.html" class="back-button">← Back to Heat Transfer</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="dpheForm">
+        <div class="form-group">
+          <label for="hi">Inner Side Heat Transfer Coefficient (W/m²·K):</label>
+          <input type="number" id="hi" required>
+        </div>
+
+        <div class="form-group">
+          <label for="ho">Outer Side Heat Transfer Coefficient (W/m²·K):</label>
+          <input type="number" id="ho" required>
+        </div>
+
+        <div class="form-group">
+          <label for="k">Wall Thermal Conductivity (W/m·K):</label>
+          <input type="number" id="k" required>
+        </div>
+
+        <div class="form-group">
+          <label for="di">Inner Pipe Diameter (mm):</label>
+          <input type="number" id="di" required>
+        </div>
+
+        <div class="form-group">
+          <label for="do">Outer Pipe Diameter (mm):</label>
+          <input type="number" id="do" required>
+        </div>
+
+        <div class="form-group">
+          <label for="L">Pipe Length (m):</label>
+          <input type="number" id="L" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T_hot_in">Hot Fluid Inlet Temp (°C):</label>
+          <input type="number" id="T_hot_in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T_hot_out">Hot Fluid Outlet Temp (°C):</label>
+          <input type="number" id="T_hot_out" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T_cold_in">Cold Fluid Inlet Temp (°C):</label>
+          <input type="number" id="T_cold_in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T_cold_out">Cold Fluid Outlet Temp (°C):</label>
+          <input type="number" id="T_cold_out" required>
+        </div>
+
+        <div class="form-group">
+          <label for="flowRate">Mass Flow Rate (kg/h):</label>
+          <input type="number" id="flowRate" required>
+        </div>
+
+        <div class="form-group">
+          <label for="cp">Specific Heat (J/kg·K):</label>
+          <input type="number" id="cp" required>
+        </div>
+
+        <button type="button" onclick="calculateDPHE()">Calculate</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/heattranjs/heatexchanger/double-pipe.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

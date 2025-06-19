@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reciprocating Compressor Calculation</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Reciprocating Compressor Calculation</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Estimate displacement, swept volume, clearance, and theoretical capacity of a reciprocating compressor.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../ffindex.html" class="back-button">← Back to Fluid Flow</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="recipCalcForm">
+        <div class="form-group">
+          <label for="bore">Cylinder Bore (mm):</label>
+          <input type="number" id="bore" required>
+        </div>
+
+        <div class="form-group">
+          <label for="stroke">Stroke Length (mm):</label>
+          <input type="number" id="stroke" required>
+        </div>
+
+        <div class="form-group">
+          <label for="n">Compressor Speed (rpm):</label>
+          <input type="number" id="n" required>
+        </div>
+
+        <div class="form-group">
+          <label for="nCyl">Number of Cylinders:</label>
+          <input type="number" id="nCyl" value="1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="clearance">Clearance Volume (% of swept):</label>
+          <input type="number" id="clearance" value="5" required>
+        </div>
+
+        <div class="form-group">
+          <label for="P1">Suction Pressure (kPa):</label>
+          <input type="number" id="P1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="P2">Discharge Pressure (kPa):</label>
+          <input type="number" id="P2" required>
+        </div>
+
+        <button type="button" onclick="calculateRecipCompressor()">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/ff/compressor-blower-fan/recip-compressor-calc.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

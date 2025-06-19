@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bingham Plastic Fluid Flow - Pressure Drop</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <h1 class="main-heading">Bingham Plastic Fluid Flow - Pressure Drop</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Estimate pressure drop and head loss for Bingham Plastic fluids flowing in a pipe.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../ffindex.html" class="back-button">← Back to Fluid Flow</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="binghamForm">
+        <div class="form-group">
+          <label for="length">Pipe Length (m):</label>
+          <input type="number" id="length" required>
+        </div>
+
+        <div class="form-group">
+          <label for="diameter">Pipe Diameter (mm):</label>
+          <input type="number" id="diameter" required>
+        </div>
+
+        <div class="form-group">
+          <label for="velocity">Flow Velocity (m/s):</label>
+          <input type="number" id="velocity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="tau0">Yield Stress τ₀ (Pa):</label>
+          <input type="number" id="tau0" required>
+        </div>
+
+        <div class="form-group">
+          <label for="mu">Plastic Viscosity μₚ (Pa·s):</label>
+          <input type="number" id="mu" required>
+        </div>
+
+        <button type="button" onclick="calculateBingham()">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/ff/singlephase/bingham-flow.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

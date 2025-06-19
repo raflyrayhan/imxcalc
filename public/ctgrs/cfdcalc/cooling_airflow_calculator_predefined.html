@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cooling Load & Air Flow Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Cooling Load & Required Air Flow Calculator</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+        <div class="form-group mb-2">
+          <label>Workshop Area (m²):</label>
+          <input type="number" class="form-control" id="area" value="1000" />
+        </div>
+        <div class="form-group mb-2">
+          <label>Lighting Power Density (W/m²):</label>
+          <input type="number" class="form-control" id="lightingDensity" value="12" />
+        </div>
+        <div class="form-group mb-2">
+          <label>Number of Workers:</label>
+          <input type="number" class="form-control" id="workers" value="20" />
+        </div>
+        <div class="form-group mb-2">
+          <label>Heat Gain per Worker (W):</label>
+          <input type="number" class="form-control" id="heatWorker" value="500" />
+        </div>
+        <div class="form-group mb-2">
+          <label>Number of Furnaces:</label>
+          <input type="number" class="form-control" id="furnaces" value="2" />
+        </div>
+        <div class="form-group mb-2">
+          <label>Heat Output per Furnace (kW):</label>
+          <input type="number" class="form-control" id="furnaceHeat" value="200" />
+        </div>
+        <div class="form-group mb-2">
+          <label>Other Machines Total Heat (kW):</label>
+          <input type="number" class="form-control" id="otherMachines" value="100" />
+        </div>
+        <div class="form-group mb-2">
+          <label>Sun-Exposed Roof/Wall Area (m²):</label>
+          <input type="number" class="form-control" id="solarArea" value="300" />
+        </div>
+        <div class="form-group mb-2">
+          <label>Solar Gain Rate (W/m²):</label>
+          <input type="number" class="form-control" id="solarRate" value="10" />
+        </div>
+        <div class="form-group mb-2">
+          <label>Ambient Temperature (°C):</label>
+          <input type="number" class="form-control" id="ambientTemp" value="35" />
+        </div>
+        <div class="form-group mb-3">
+          <label>Indoor Target Temperature (°C):</label>
+          <input type="number" class="form-control" id="indoorTemp" value="28" />
+        </div>
+
+        <button class="btn btn-primary w-100" onclick="calculate()">Calculate</button>
+
+        <div class="mt-4" id="result"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calculate() {
+      const area = parseFloat(document.getElementById('area').value || 0);
+      const lightingDensity = parseFloat(document.getElementById('lightingDensity').value || 0);
+      const workers = parseInt(document.getElementById('workers').value || 0);
+      const heatWorker = parseFloat(document.getElementById('heatWorker').value || 0);
+      const furnaces = parseInt(document.getElementById('furnaces').value || 0);
+      const furnaceHeat = parseFloat(document.getElementById('furnaceHeat').value || 0) * 1000;
+      const otherMachines = parseFloat(document.getElementById('otherMachines').value || 0) * 1000;
+      const solarArea = parseFloat(document.getElementById('solarArea').value || 0);
+      const solarRate = parseFloat(document.getElementById('solarRate').value || 0);
+      const T_ambient = parseFloat(document.getElementById('ambientTemp').value || 0);
+      const T_indoor = parseFloat(document.getElementById('indoorTemp').value || 0);
+      const deltaT = T_ambient - T_indoor;
+
+      const q_people = workers * heatWorker;
+      const q_furnaces = furnaces * furnaceHeat;
+      const q_machines = otherMachines;
+      const q_lighting = area * lightingDensity;
+      const q_solar = solarArea * solarRate;
+
+      const q_total = q_people + q_furnaces + q_machines + q_lighting + q_solar;
+
+      const rho = 1.2; // kg/m³
+      const cp = 1005; // J/kg.K
+
+      const m_air = deltaT > 0 ? (q_total / (rho * cp * deltaT)).toFixed(2) : 0;
+
+      document.getElementById('result').innerHTML = `
+        <div class="alert alert-info">
+          <strong>Total Cooling Load:</strong> ${q_total.toLocaleString()} W<br/>
+          <strong>Required Cooling Air Flow:</strong> ${m_air} kg/s
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

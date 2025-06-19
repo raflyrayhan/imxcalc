@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feed Line & Operating Lines Analysis</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">Feed Line & Operating Lines Analysis</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="opLineForm" autocomplete="off">
+        <div class="form-group">
+          <label for="xF">Feed composition (x<sub>F</sub>)</label>
+          <input type="number" step="0.01" id="xF" value="0.4" required>
+        </div>
+        <div class="form-group">
+          <label for="q">Feed thermal condition (q)</label>
+          <input type="number" step="0.01" id="q" value="1" required>
+        </div>
+        <div class="form-group">
+          <label for="xD">Distillate composition (x<sub>D</sub>)</label>
+          <input type="number" step="0.01" id="xD" value="0.95" required>
+        </div>
+        <div class="form-group">
+          <label for="xB">Bottoms composition (x<sub>B</sub>)</label>
+          <input type="number" step="0.01" id="xB" value="0.05" required>
+        </div>
+        <div class="form-group">
+          <label for="R">Reflux Ratio (R)</label>
+          <input type="number" step="0.01" id="R" value="2" required>
+        </div>
+        <div class="form-group">
+          <label for="S">Boilup Ratio (S)</label>
+          <input type="number" step="0.01" id="S" value="2" required>
+        </div>
+        <button type="button" onclick="analyzeLines()">Analyze</button>
+      </form>
+      <div id="lines_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/distjs/feed_line.js"></script>
+</body>
+</html>

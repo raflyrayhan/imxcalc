@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Retention Time & Settling Velocity Calculator</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">Retention Time & Settling Velocity Calculator</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="rt_svForm" autocomplete="off">
+        <div class="form-group">
+          <label for="V">Hold-up Volume (m³)</label>
+          <input type="number" step="0.01" id="V" value="10" required>
+        </div>
+        <div class="form-group">
+          <label for="Q">Liquid Flowrate (m³/h)</label>
+          <input type="number" step="0.01" id="Q" value="25" required>
+        </div>
+        <div class="form-group">
+          <label for="rho_p">Droplet/Particle Density (kg/m³)</label>
+          <input type="number" step="0.1" id="rho_p" value="850" required>
+        </div>
+        <div class="form-group">
+          <label for="rho_f">Continuous Phase Density (kg/m³)</label>
+          <input type="number" step="0.1" id="rho_f" value="1000" required>
+        </div>
+        <div class="form-group">
+          <label for="d">Droplet/Particle Diameter (µm)</label>
+          <input type="number" step="0.1" id="d" value="100" required>
+        </div>
+        <div class="form-group">
+          <label for="mu">Viscosity (mPa·s)</label>
+          <input type="number" step="0.01" id="mu" value="1" required>
+        </div>
+        <button type="button" onclick="calcRetTimeSetVel()">Calculate</button>
+      </form>
+      <div id="rtsv_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/eqpjs/retent_time.js"></script>
+</body>
+</html>

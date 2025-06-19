@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Natural Gas Viscosity</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+</head>
+<body>
+
+  <h1 class="main-heading">Natural Gas Viscosity</h1>
+  <hr class="header-line" />
+  <p class="description">This tool calculates the viscosity of natural gas using the Lee, Gonzales and Eakin correlation method.</p>
+<div style="text-align:center; margin-bottom: 20px;">
+  <a href="../../propindex.html" class="back-button">← Back to Properties</a>
+</div>
+  <div class="grid-container" style="justify-content: center;">
+    <div class="folder-card" style="width: 700px;">
+      <form id="viscosityForm" onsubmit="return false;">
+        <label for="P">Pressure (psia):</label>
+        <input type="number" id="P" required>
+
+        <label for="T">Temperature (°F):</label>
+        <input type="number" id="T" required>
+
+        <label for="SG">Gas Specific Gravity (air = 1):</label>
+        <input type="number" id="SG" value="0.6" required>
+
+        <button type="submit" onclick="calculateViscosity()">Calculate</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/propjs/naturalgas/ng-viscosity.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Packed Column Height Calculator</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">Packed Column Height Calculator</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="packedForm" autocomplete="off">
+        <div class="form-group">
+          <label for="nt">Number of Stages / Transfer Units</label>
+          <input type="number" step="0.01" id="nt" value="10" required>
+        </div>
+        <div class="form-group">
+          <label for="heightValue">HETP / HTU (meter)</label>
+          <input type="number" step="0.01" id="heightValue" value="0.5" required>
+        </div>
+        <div class="form-group">
+          <label for="method">Calculation Method</label>
+          <select id="method">
+            <option value="HETP">HETP (Height Equivalent to Theoretical Plate)</option>
+            <option value="HTU">HTU (Height of Transfer Unit)</option>
+          </select>
+        </div>
+        <button type="button" onclick="packedColumnCalc()">Calculate Height</button>
+      </form>
+      <div id="packed_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/distjs/packed_column.js"></script>
+</body>
+</html>

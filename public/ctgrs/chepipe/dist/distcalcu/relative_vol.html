@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Relative Volatility Calculator</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">Relative Volatility Calculator</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="rvForm" autocomplete="off">
+        <div class="form-group">
+          <label for="yA">y<sub>A</sub> (vapor mole fraction A)</label>
+          <input type="number" step="0.0001" id="yA" value="0.7" required>
+        </div>
+        <div class="form-group">
+          <label for="xA">x<sub>A</sub> (liquid mole fraction A)</label>
+          <input type="number" step="0.0001" id="xA" value="0.3" required>
+        </div>
+        <div class="form-group">
+          <label for="yB">y<sub>B</sub> (vapor mole fraction B)</label>
+          <input type="number" step="0.0001" id="yB" value="0.3" required>
+        </div>
+        <div class="form-group">
+          <label for="xB">x<sub>B</sub> (liquid mole fraction B)</label>
+          <input type="number" step="0.0001" id="xB" value="0.7" required>
+        </div>
+        <button type="button" onclick="calcRelVol()">Calculate α</button>
+      </form>
+      <div id="rv_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/distjs/relative_vol.js"></script>
+</body>
+</html>

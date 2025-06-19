@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Heat Exchanger Rating (Bell-Delaware)</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Heat Exchanger Rating (Bell-Delaware Method)</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Calculate overall heat transfer coefficient and performance of shell and tube heat exchanger.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../heattranindex.html" class="back-button">← Back to Heat Transfer</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card" style="max-width: 800px;">
+      <form id="bellForm">
+
+        <h3>Tube Side</h3>
+        <div class="form-group">
+          <label for="mTube">Mass Flow Rate (kg/h):</label>
+          <input type="number" id="mTube" required>
+        </div>
+        <div class="form-group">
+          <label for="cpTube">Specific Heat Cp (J/kg·K):</label>
+          <input type="number" id="cpTube" required>
+        </div>
+        <div class="form-group">
+          <label for="muTube">Viscosity μ (Pa·s):</label>
+          <input type="number" id="muTube" required>
+        </div>
+        <div class="form-group">
+          <label for="rhoTube">Density ρ (kg/m³):</label>
+          <input type="number" id="rhoTube" required>
+        </div>
+        <div class="form-group">
+          <label for="dIn">Tube Inside Diameter (mm):</label>
+          <input type="number" id="dIn" required>
+        </div>
+        <div class="form-group">
+          <label for="nTubes">Number of Tubes:</label>
+          <input type="number" id="nTubes" required>
+        </div>
+        <div class="form-group">
+          <label for="lTube">Tube Length (m):</label>
+          <input type="number" id="lTube" required>
+        </div>
+        <hr>
+
+        <h3>Shell Side</h3>
+        <div class="form-group">
+          <label for="mShell">Mass Flow Rate (kg/h):</label>
+          <input type="number" id="mShell" required>
+        </div>
+        <div class="form-group">
+          <label for="cpShell">Specific Heat Cp (J/kg·K):</label>
+          <input type="number" id="cpShell" required>
+        </div>
+        <div class="form-group">
+          <label for="muShell">Viscosity μ (Pa·s):</label>
+          <input type="number" id="muShell" required>
+        </div>
+        <div class="form-group">
+          <label for="rhoShell">Density ρ (kg/m³):</label>
+          <input type="number" id="rhoShell" required>
+        </div>
+        <div class="form-group">
+          <label for="dShell">Shell Diameter (mm):</label>
+          <input type="number" id="dShell" required>
+        </div>
+        <div class="form-group">
+          <label for="baffle">Baffle Spacing (mm):</label>
+          <input type="number" id="baffle" required>
+        </div>
+        <hr>
+        <h3>Wall & Fouling</h3>
+        <div class="form-group">
+          <label for="kWall">Wall Thermal Conductivity (W/m·K):</label>
+          <input type="number" id="kWall" required>
+        </div>
+        <div class="form-group">
+          <label for="tWall">Wall Thickness (mm):</label>
+          <input type="number" id="tWall" required>
+        </div>
+        <div class="form-group">
+          <label for="rfTube">Fouling Resistance Tube Side (m²·K/W):</label>
+          <input type="number" id="rfTube" required>
+        </div>
+        <div class="form-group">
+          <label for="rfShell">Fouling Resistance Shell Side (m²·K/W):</label>
+          <input type="number" id="rfShell" required>
+        </div>
+        <hr>
+      
+        <h3>Temperature</h3>
+        <div class="form-group">
+          <label for="t1">Tube Inlet Temp (°C):</label>
+          <input type="number" id="t1" required>
+        </div>
+        <div class="form-group">
+          <label for="t2">Tube Outlet Temp (°C):</label>
+          <input type="number" id="t2" required>
+        </div>
+        <div class="form-group">
+          <label for="t3">Shell Inlet Temp (°C):</label>
+          <input type="number" id="t3" required>
+        </div>
+        <div class="form-group">
+          <label for="t4">Shell Outlet Temp (°C):</label>
+          <input type="number" id="t4" required>
+        </div>
+
+        <button type="button" onclick="calculateBell()">Calculate</button>
+      </form>
+
+      <div id="result" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/heattranjs/heatexchanger/bell-delaware.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

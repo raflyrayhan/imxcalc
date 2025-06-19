@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reciprocating Compressor Rating</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Reciprocating Compressor Rating</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Estimate compressor capacity and power for a single-stage reciprocating compressor with ideal gas assumption.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../ffindex.html" class="back-button">← Back to Fluid Flow</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="recipForm">
+        <div class="form-group">
+          <label for="P1">Suction Pressure P₁ (kPa):</label>
+          <input type="number" id="P1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="P2">Discharge Pressure P₂ (kPa):</label>
+          <input type="number" id="P2" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T1">Suction Temperature T₁ (°C):</label>
+          <input type="number" id="T1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="flowNm3">Free Air Delivery (Nm³/h):</label>
+          <input type="number" id="flowNm3" required>
+        </div>
+
+        <div class="form-group">
+          <label for="k">Gas Ratio of Specific Heats (k):</label>
+          <input type="number" step="any" id="k" value="1.4" required>
+        </div>
+
+        <div class="form-group">
+          <label for="MW">Gas Molecular Weight:</label>
+          <input type="number" id="MW" value="29" required>
+        </div>
+
+        <div class="form-group">
+          <label for="eff">Isentropic Efficiency (%):</label>
+          <input type="number" id="eff" value="85" required>
+        </div>
+
+        <button type="button" onclick="calculateRecipRating()">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/ff/compressor-blower-fan/recip-compressor-rating.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

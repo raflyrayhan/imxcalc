@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Natural Gas Pipeline Sizing</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 class="main-heading">Natural Gas Pipeline Sizing</h1>
+  <hr class="header-line" />
+  <p class="description" style="text-align: center;">
+    Estimate natural gas flowrate or required diameter for pipeline transport under steady-state conditions.
+  </p>
+
+  <div style="text-align:center; margin-bottom: 30px;">
+    <a href="../../ffindex.html" class="back-button">← Back to Fluid Flow</a>
+  </div>
+
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="gasPipeForm">
+        <div class="form-group">
+          <label for="P1">Inlet Pressure (kPa):</label>
+          <input type="number" id="P1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="P2">Outlet Pressure (kPa):</label>
+          <input type="number" id="P2" required>
+        </div>
+
+        <div class="form-group">
+          <label for="T">Gas Temperature (°C):</label>
+          <input type="number" id="T" required>
+        </div>
+
+        <div class="form-group">
+          <label for="L">Pipe Length (km):</label>
+          <input type="number" id="L" required>
+        </div>
+
+        <div class="form-group">
+          <label for="Z">Compressibility Factor (Z):</label>
+          <input type="number" step="any" id="Z" value="0.9" required>
+        </div>
+
+        <div class="form-group">
+          <label for="D">Pipe Diameter (mm):</label>
+          <input type="number" id="D" required>
+        </div>
+
+        <div class="form-group">
+          <label for="C">Flow Coefficient C:</label>
+          <input type="number" step="any" id="C" value="0.027" required>
+        </div>
+
+        <button type="button" onclick="calculateGasFlow()">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="../../../../../js/ff/pipesizing/gas-pipeline-sizing.js"></script>
+
+  <footer class="footer" style="text-align: center;">
+    <p>&copy; PT. Infimech Harmoni Teknologi</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fluid Heat Exchanger Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      margin-top: 40px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    canvas {
+      margin-top: 40px;
+    }
+    .back-button {
+  display: inline-block;
+  font-size: 1rem;
+  color: #1d72b8;
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid #1d72b8;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  margin: 0 auto;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fluid Heat Exchanger Calculator</h1>
+    <form id="inputForm">
+      <div class="row g-3">
+        <div class="col-md-6"><label class="form-label">Shell Side Inlet Temperature (°C)</label><input type="number" class="form-control" id="T_g_in" value="457.06"></div>
+        <div class="col-md-6"><label class="form-label">Tube Side Inlet Temperature (°C)</label><input type="number" class="form-control" id="T_c_in" value="285"></div>
+        <div class="col-md-6"><label class="form-label">Tube Side Outlet Temperature (°C)</label><input type="number" class="form-control" id="T_c_out" value="354.6"></div>
+        <div class="col-md-6"><label class="form-label">Tube Side Mass Flow (kg/h)</label><input type="number" class="form-control" id="mass_flow_c" value="101946.132"></div>
+        <div class="col-md-6"><label class="form-label">Shell Side Mass Flow (kg/h)</label><input type="number" class="form-control" id="mass_flow_g" value="443622.9"></div>
+        <hr class="my-4">
+        <div class="col-md-6"><label class="form-label">Tube Side Specific Heat (J/kg·K)</label><input type="number" class="form-control" id="Cp_c" value="2469"></div>
+        <div class="col-md-6"><label class="form-label">Tube Side Density (kg/m³)</label><input type="number" class="form-control" id="rho_c" value="15.92"></div>
+        <div class="col-md-6"><label class="form-label">Tube Side Viscosity (Pa·s)</label><input type="number" class="form-control" id="mu_c" value="0.0174"></div>
+        <div class="col-md-6"><label class="form-label">Tube Side Prandtl Number</label><input type="number" class="form-control" id="Pr_c" value="0.74536"></div>
+        <div class="col-md-6"><label class="form-label">Shell Side Specific Heat (J/kg·K)</label><input type="number" class="form-control" id="Cp_g" value="1236.9"></div>
+        <div class="col-md-6"><label class="form-label">Shell Side Density (kg/m³)</label><input type="number" class="form-control" id="rho_g" value="0.4366"></div>
+        <div class="col-md-6"><label class="form-label">Shell Side Viscosity (Pa·s)</label><input type="number" class="form-control" id="mu_g" value="0.0315"></div>
+        <div class="col-md-6"><label class="form-label">Shell Side Prandtl Number</label><input type="number" class="form-control" id="Pr_g" value="0.73759"></div>
+        <div class="col-md-12 mt-4 form-check">
+          <input type="checkbox" class="form-check-input" id="use_latent" onclick="toggleLatentInput()">
+          <label class="form-check-label" for="use_latent">Include Latent Heat?</label>
+        </div>
+        <div id="latentInputGroup" style="display:none;">
+          <div class="col-md-6 mt-2"><label class="form-label">Latent Heat (Tube Side) (J/kg)</label><input type="number" class="form-control" id="latent_heat_tube" value="0"></div>
+          <div class="col-md-6 mt-2"><label class="form-label">Latent Heat (Shell Side) (J/kg)</label><input type="number" class="form-control" id="latent_heat_shell" value="0"></div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <button type="button" class="btn btn-primary" onclick="calculate()">Calculate</button>
+        <button type="button" class="btn btn-success ms-2" onclick="downloadPDF()">Download PDF</button>
+      </div>
+    </form>
+    <div id="result" class="mt-4"></div>
+    <canvas id="tempProfile" height="250"></canvas>
+  </div>
+
+<script>
+function toggleLatentInput() {
+  document.getElementById('latentInputGroup').style.display = document.getElementById('use_latent').checked ? 'block' : 'none';
+}
+
+function calculate() {
+  const T_g_in = parseFloat(document.getElementById('T_g_in').value);
+  const T_c_in = parseFloat(document.getElementById('T_c_in').value);
+  const T_c_out = parseFloat(document.getElementById('T_c_out').value);
+  const mass_flow_c = parseFloat(document.getElementById('mass_flow_c').value) / 3600;
+  const mass_flow_g = parseFloat(document.getElementById('mass_flow_g').value) / 3600;
+  const Cp_c = parseFloat(document.getElementById('Cp_c').value);
+  const rho_c = parseFloat(document.getElementById('rho_c').value);
+  const mu_c = parseFloat(document.getElementById('mu_c').value);
+  const Pr_c = parseFloat(document.getElementById('Pr_c').value);
+  const Cp_g = parseFloat(document.getElementById('Cp_g').value);
+  const rho_g = parseFloat(document.getElementById('rho_g').value);
+  const mu_g = parseFloat(document.getElementById('mu_g').value);
+  const Pr_g = parseFloat(document.getElementById('Pr_g').value);
+  const useLatent = document.getElementById('use_latent').checked;
+  const latentHeatTube = useLatent ? parseFloat(document.getElementById('latent_heat_tube').value || 0) : 0;
+  const latentHeatShell = useLatent ? parseFloat(document.getElementById('latent_heat_shell').value || 0) : 0;
+  const latentEnergyTube = mass_flow_c * latentHeatTube;
+  const latentEnergyShell = mass_flow_g * latentHeatShell;
+  const latentEnergy = useLatent ? (latentEnergyTube + latentEnergyShell) : 0;
+
+  const D_i = 59.9 / 1000;
+  const tube_length = 15.6;
+  const number_tube = 48;
+  const A_total = 2475.190453;
+  const sensibleHeat = mass_flow_c * Cp_c * (T_c_out - T_c_in);
+  const Q_dot = sensibleHeat + latentEnergy;
+  const Q_dot_MW = Q_dot / 1e6;
+  const T_g_out = T_g_in - Q_dot / (mass_flow_g * Cp_g);
+  const delta_T1 = T_g_in - T_c_out;
+  const delta_T2 = T_g_out - T_c_in;
+  const LMTD = (delta_T1 - delta_T2) / Math.log(delta_T1 / delta_T2);
+  const UA = Q_dot / LMTD;
+  const U = UA / A_total;
+  const A_cross_tube = Math.PI * D_i * D_i / 4 * number_tube;
+  const velocity_tube = mass_flow_c / (rho_c * A_cross_tube);
+  const Re_tube = (rho_c * velocity_tube * D_i) / mu_c;
+  const shell_cross_area = (3624 / 1000) * (427 / 1000);
+  const velocity_shell = mass_flow_g / (rho_g * shell_cross_area);
+  const hydraulic_diameter_shell = 4 * shell_cross_area / (2 * ((3624 + 427) / 1000));
+  const Re_shell = (rho_g * velocity_shell * hydraulic_diameter_shell) / mu_g;
+  const Nu_tube = 0.023 * Math.pow(Re_tube, 0.8) * Math.pow(Pr_c, 0.4);
+  const Nu_shell = 0.023 * Math.pow(Re_shell, 0.8) * Math.pow(Pr_g, 0.4);
+
+  document.getElementById('result').innerHTML = `
+    <div><strong>Total Heat Transfer:</strong> ${Q_dot_MW.toFixed(3)} MW</div>
+    ${useLatent ? `<div><strong>Latent Heat Contribution (Tube Side):</strong> ${(latentEnergyTube / 1e6).toFixed(3)} MW</div>
+    <div><strong>Latent Heat Contribution (Shell Side):</strong> ${(latentEnergyShell / 1e6).toFixed(3)} MW</div>` : ""}
+    <div><strong>Overall Heat Transfer Coefficient (U):</strong> ${U.toFixed(2)} W/m²K</div>
+    <div><strong>UA:</strong> ${UA.toFixed(2)} W/K</div>
+    <div><strong>Outlet Shell Side Temperature:</strong> ${T_g_out.toFixed(2)} °C</div>
+    <div><strong>LMTD:</strong> ${LMTD.toFixed(2)} °C</div>
+    <div><strong>Reynolds Number (Tube Side):</strong> ${Re_tube.toFixed(0)}</div>
+    <div><strong>Reynolds Number (Shell Side):</strong> ${Re_shell.toFixed(0)}</div>
+    <div><strong>Nusselt Number (Tube Side):</strong> ${Nu_tube.toFixed(2)}</div>
+    <div><strong>Nusselt Number (Shell Side):</strong> ${Nu_shell.toFixed(2)}</div>
+  `;
+
+  const ctx = document.getElementById('tempProfile').getContext('2d');
+  const steps = 10;
+  const x = Array.from({ length: steps + 1 }, (_, i) => (i * tube_length / steps).toFixed(2));
+  const T_hot = x.map((_, i) => T_g_in - (i / steps) * (T_g_in - T_g_out));
+  const T_cold = x.map((_, i) => T_c_in + (i / steps) * (T_c_out - T_c_in));
+  if (window.tempChartInstance) window.tempChartInstance.destroy();
+  window.tempChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: x,
+      datasets: [
+        { label: 'Shell Side Temperature (°C)', data: T_hot, borderColor: 'red', fill: false, tension: 0.1 },
+        { label: 'Tube Side Temperature (°C)', data: T_cold, borderColor: 'blue', fill: false, tension: 0.1 }
+      ]
+    },
+    options: {
+      plugins: {
+        title: { display: true, text: 'Temperature Profile Along Exchanger Length' }
+      },
+      scales: {
+        x: { title: { display: true, text: 'Length (m)' } },
+        y: { title: { display: true, text: 'Temperature (°C)' } }
+      }
+    }
+  });
+}
+
+async function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  let y = 10;
+  doc.setFontSize(14);
+  doc.text("Fluid Heat Exchanger Calculation Report", 14, y);
+  y += 10;
+
+  const resultDiv = document.getElementById("result");
+  const lines = resultDiv.innerText.split("\n");
+
+  doc.setFontSize(11);
+  lines.forEach(line => {
+    const split = doc.splitTextToSize(line, 180);
+    split.forEach(txt => {
+      if (y > 270) {
+        doc.addPage();
+        y = 10;
+      }
+      doc.text(txt, 14, y);
+      y += 7;
+    });
+  });
+
+  const canvas = document.getElementById("tempProfile");
+  const imgData = canvas.toDataURL("image/png");
+
+  if (y > 200) {
+    doc.addPage();
+    y = 10;
+  }
+
+  doc.addImage(imgData, 'PNG', 15, y, 180, 80);
+  doc.save("heat_exchanger_report.pdf");
+}
+</script>
+<div style="text-align: left; margin-bottom: 30px;">
+                         <a href="../cfdcalc/cfdindex.html" class="back-button">← Back to Main Page</a>
+                    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Large Diameter Gas Orifice Sizing</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+</head>
+<body>
+
+<h1 class="main-heading">Large Diameter Gas Orifice Sizing</h1>
+<hr class="header-line" />
+<p class="description" style="text-align: center;">Calculate flow rate through a large gas orifice using ISO/API equation for choked or subsonic flow.</p>
+
+<div style="text-align:center; margin-bottom: 20px;">
+  <a href="../../instindex.html" class="back-button">← Back to Instrument</a>
+</div>
+
+<div class="grid-container" style="justify-content:center;">
+  <div class="folder-card" style="width: 650px;">
+    <form id="orificeGasForm" onsubmit="return false;">
+      <label for="P1">Upstream Pressure (bar abs):</label>
+      <input type="number" id="P1" required>
+
+      <label for="T">Gas Temperature (K):</label>
+      <input type="number" id="T" required>
+
+      <label for="MW">Molecular Weight:</label>
+      <input type="number" id="MW" required>
+
+      <label for="Z">Compressibility Factor Z:</label>
+      <input type="number" id="Z" value="1.0" required>
+
+      <label for="d">Orifice Diameter (mm):</label>
+      <input type="number" id="d" required>
+
+      <label for="Cd">Discharge Coefficient Cd:</label>
+      <input type="number" id="Cd" value="0.61" required>
+
+      <button type="submit" onclick="calculateLargeGasOrifice()">Calculate</button>
+    </form>
+
+    <div id="result" style="margin-top: 20px;"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>&copy; PT. Infimech Harmoni Teknologi</p>
+</footer>
+
+<script src="../../../../../js/instjs/orifice/gas-large.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PSV Sizing - Liquid Filled Vessel (Fire Case)</title>
+  <link rel="stylesheet" href="../../../../../css/styles-calc.css" />
+</head>
+<body>
+
+<h1 class="main-heading">PSV Sizing – Fire Case (Liquid Filled Vessel)</h1>
+<hr class="header-line" />
+<p class="description" style="text-align: center;">Calculate PSV required orifice area for liquid-filled vessels in fire exposure based on API 520.</p>
+
+<div style="text-align:center; margin-bottom: 20px;">
+  <a href="../../instindex.html" class="back-button">← Back to Instrument</a>
+</div>
+
+<div class="grid-container" style="justify-content: center;">
+  <div class="folder-card" style="width: 650px;">
+    <form id="psvLiquidForm" onsubmit="return false;">
+      <label for="Q">Heat Absorbed (Q) in kW:</label>
+      <input type="number" id="Q" required>
+
+      <label for="Hvap">Latent Heat of Vaporization (kJ/kg):</label>
+      <input type="number" id="Hvap" value="200" required>
+
+      <label for="Kd">Discharge Coefficient (Kd):</label>
+      <input type="number" id="Kd" value="0.975" required>
+
+      <label for="density">Liquid Density at Relief Temp (kg/m³):</label>
+      <input type="number" id="density" required>
+
+      <button type="submit" onclick="calculatePsvLiquid()">Calculate</button>
+    </form>
+
+    <div id="result" style="margin-top: 20px;"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>&copy; PT. Infimech Harmoni Teknologi</p>
+</footer>
+
+<script src="../../../../../js/instjs/psvjs/psv-liquid-firecase.js"></script>
+</body>
+</html>

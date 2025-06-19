@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Horizontal Three Phase Separator Sizing</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">Horizontal Three Phase Separator Sizing</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="sepForm" autocomplete="off">
+        <div class="form-group">
+          <label for="Qgas">Gas Flowrate (Nm³/h)</label>
+          <input type="number" step="1" id="Qgas" value="5000" required>
+        </div>
+        <div class="form-group">
+          <label for="Qoil">Oil Flowrate (m³/h)</label>
+          <input type="number" step="0.1" id="Qoil" value="30" required>
+        </div>
+        <div class="form-group">
+          <label for="Qwater">Water Flowrate (m³/h)</label>
+          <input type="number" step="0.1" id="Qwater" value="15" required>
+        </div>
+        <div class="form-group">
+          <label for="rho_g">Gas Density (kg/m³)</label>
+          <input type="number" step="0.1" id="rho_g" value="2" required>
+        </div>
+        <div class="form-group">
+          <label for="rho_l">Liquid Density (oil/water, kg/m³)</label>
+          <input type="number" step="0.1" id="rho_l" value="900" required>
+        </div>
+        <div class="form-group">
+          <label for="K">Souders-Brown K (m/s, 0.10–0.13)</label>
+          <input type="number" step="0.01" id="K" value="0.12" required>
+        </div>
+        <div class="form-group">
+          <label for="t_ret">Retention Time (min)</label>
+          <input type="number" step="0.1" id="t_ret" value="4" required>
+        </div>
+        <div class="form-group">
+          <label for="freeboard">Freeboard / Gas Space Allowance (m)</label>
+          <input type="number" step="0.1" id="freeboard" value="0.5" required>
+        </div>
+        <button type="button" onclick="sep3phSizing()">Calculate Separator Size</button>
+      </form>
+      <div id="sep3ph_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/eqpjs/hor_3phase.js"></script>
+</body>
+</html>

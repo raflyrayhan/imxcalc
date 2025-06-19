@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mixing Time Estimation</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">Mixing Time Estimation</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="mixingTimeForm" autocomplete="off">
+        <div class="form-group">
+          <label for="rpm">Impeller Speed (rpm)</label>
+          <input type="number" step="0.1" id="rpm" value="100" required>
+        </div>
+        <div class="form-group">
+          <label for="K">Empirical Factor (K)</label>
+          <input type="number" step="0.1" id="K" value="5" required>
+        </div>
+        <div class="form-group">
+          <label for="d1">Lab Impeller Diameter (D₁, m)</label>
+          <input type="number" step="0.001" id="d1" value="0.2" required>
+        </div>
+        <div class="form-group">
+          <label for="d2">Scale-Up Impeller Diameter (D₂, m)</label>
+          <input type="number" step="0.001" id="d2" value="1.0" required>
+        </div>
+        <div class="form-group">
+          <label for="n1">Lab Impeller Speed (N₁, rpm)</label>
+          <input type="number" step="0.1" id="n1" value="300" required>
+        </div>
+        <div class="form-group">
+          <label for="n2">Scale-Up Impeller Speed (N₂, rpm)</label>
+          <input type="number" step="0.1" id="n2" value="60" required>
+        </div>
+        <button type="button" onclick="mixingTimeEstimate()">Estimate</button>
+      </form>
+      <div id="mixing_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/agttnjs/mixing_time.js"></script>
+</body>
+</html>

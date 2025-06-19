@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vessel Wall Thickness Calculator</title>
+  <link rel="stylesheet" href="../../../../css/styles-calc.css">
+</head>
+<body>
+  <h1 class="main-heading">Vessel Wall Thickness Calculator</h1>
+  <div class="grid-container">
+    <div class="folder-card">
+      <form id="vesselForm" autocomplete="off">
+        <div class="form-group">
+          <label for="P">Design Pressure (bar)</label>
+          <input type="number" step="0.01" id="P" value="10" required>
+        </div>
+        <div class="form-group">
+          <label for="R">Inside Radius (mm)</label>
+          <input type="number" step="0.1" id="R" value="1000" required>
+        </div>
+        <div class="form-group">
+          <label for="S">Allowable Stress (MPa)</label>
+          <input type="number" step="0.1" id="S" value="137" required>
+        </div>
+        <div class="form-group">
+          <label for="E">Joint Efficiency (E, 0–1)</label>
+          <input type="number" step="0.01" id="E" value="1.0" required>
+        </div>
+        <div class="form-group">
+          <label for="ca">Corrosion Allowance (mm)</label>
+          <input type="number" step="0.1" id="ca" value="2" required>
+        </div>
+        <button type="button" onclick="calcVesselThickness()">Calculate Thickness</button>
+      </form>
+      <div id="vessel_result"></div>
+    </div>
+  </div>
+  <script src="../../../../js/eqpjs/vessel_wall.js"></script>
+</body>
+</html>
