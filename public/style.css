@@ -1,0 +1,125 @@
+/* ─────────── Your Original Styles ─────────── */
+body {
+  font-family: Arial;
+  margin: 20px;
+  background: #f4f4f4;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10%;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: center;
+}
+
+th {
+  background-color: #1a0284;
+  color: white;
+}
+
+input[type='number'] {
+  width: 70px;
+}
+
+.result {
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+h3 {
+  margin-top: 30px;
+}
+
+h2 {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.btn {
+  display: block;
+  width: 15%;
+  height: 40px;
+  margin: 0 auto 20px;
+  background-color: #1a0284;
+  text-align: center;
+  line-height: normal;
+  border-radius: 100px;
+}
+
+/* ─────────── “Cool” Additions ─────────── */
+
+/* Centered card container */
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo wrapper spacing */
+.container > div[style] {
+  margin-bottom: 20px;
+}
+
+/* Enhanced headings */
+h2 {
+  font-size: 2.5rem;
+  color: #1a0284;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+h3 {
+  color: #3a13cd;
+  border-bottom: 2px solid #3a13cd;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Table panel look */
+table {
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(26, 2, 132, 0.05);
+}
+
+/* Inputs styling */
+input[type='number'] {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+/* Button hover lift */
+.btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Results box match */
+.result {
+  max-width: 100%;
+  margin: 20px auto 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 15px;
+}
