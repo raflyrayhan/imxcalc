@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Desain Reaktor Pirolisis Plastik</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link rel="stylesheet" href="../../css/piro_style.css"/>
+</head>
+<body>
+<div class="container">
+<div style="text-align: center;">
+      <a href="../../index.html"><img src="../../assets/imx_logo_blue.png" style="max-width: 20%;"></a>
+</div>
+<h2 class="text-center mb-4" style="text-align: center;">Desain Reaktor Pirolisis (Plastik PE / PP / PS)</h2>
+<div class="row g-4">
+<!-- Input Form -->
+<div class="col-md-6">
+<div class="card p-4">
+<h5 class="mb-3" style="text-align: center; font-size: 20px;">Input Data</h5>
+<div class="mb-3">
+<label class="form-label">Jenis Plastik</label>
+<select class="form-select" id="jenisPlastik">
+<option value="PE">Polyethylene (PE)</option>
+<option value="PP">Polypropylene (PP)</option>
+<option value="PS">Polystyrene (PS)</option>
+</select>
+</div>
+<div class="mb-3">
+<label class="form-label">Kapasitas (kg/hari)</label>
+<input class="form-control" id="kapasitas" type="number" value="11000"/>
+</div>
+<div class="mb-3">
+<label class="form-label">Suhu Operasi (°C)</label>
+<input class="form-control" id="suhu" type="number" value="500"/>
+</div>
+<div class="mb-3">
+<label class="form-label">Waktu Tinggal (menit)</label>
+<input class="form-control" id="tinggal" type="number" value="30"/>
+</div>
+<div class="mb-3">
+<label class="form-label">Yield Bio-oil (%)</label>
+<input class="form-control" id="yieldOil" type="number" value="70"/>
+</div>
+<div class="mb-3">
+<label class="form-label">Yield Gas (%)</label>
+<input class="form-control" id="yieldGas" type="number" value="20"/>
+</div>
+<div class="mb-3">
+<label class="form-label">Yield Char (%)</label>
+<input class="form-control" id="yieldChar" type="number" value="10"/>
+</div>
+<button class="btn btn-primary w-100 mt-3" onclick="hitung()">Hitung</button>
+</div>
+</div>
+<!-- Output -->
+<div class="col-md-6">
+<div class="card p-4 bg-light" id="output">
+<h5 class="mb-3">Hasil Perhitungan</h5>
+<p class="text-muted">Isi data terlebih dahulu dan tekan tombol "Hitung".</p>
+</div>
+</div>
+</div>
+</div>
+<script src="../../js/pirolisis/pirolisis.js"></script>
+</body>
+</html>
