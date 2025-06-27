@@ -1,68 +1,111 @@
-
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<title>Desain Reaktor Pirolisis Plastik</title>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<link rel="stylesheet" href="../../css/piro_style.css"/>
+  <meta charset="utf-8"/>
+  <title>Desain Reaktor Pirolisis Plastik</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="../../css/piro_style.css"/>
 </head>
 <body>
-<div class="container">
-<div style="text-align: center;">
-      <a href="../../index.html"><img src="../../assets/imx_logo_blue.png" style="max-width: 20%;"></a>
-</div>
-<h2 class="text-center mb-4" style="text-align: center;">Desain Reaktor Pirolisis (Plastik PE / PP / PS)</h2>
-<div class="row g-4">
-<!-- Input Form -->
-<div class="col-md-6">
-<div class="card p-4">
-<h5 class="mb-3" style="text-align: center; font-size: 20px;">Input Data</h5>
-<div class="mb-3">
-<label class="form-label">Jenis Plastik</label>
-<select class="form-select" id="jenisPlastik">
-<option value="PE">Polyethylene (PE)</option>
-<option value="PP">Polypropylene (PP)</option>
-<option value="PS">Polystyrene (PS)</option>
-</select>
-</div>
-<div class="mb-3">
-<label class="form-label">Kapasitas (kg/hari)</label>
-<input class="form-control" id="kapasitas" type="number" value="11000"/>
-</div>
-<div class="mb-3">
-<label class="form-label">Suhu Operasi (°C)</label>
-<input class="form-control" id="suhu" type="number" value="500"/>
-</div>
-<div class="mb-3">
-<label class="form-label">Waktu Tinggal (menit)</label>
-<input class="form-control" id="tinggal" type="number" value="30"/>
-</div>
-<div class="mb-3">
-<label class="form-label">Yield Bio-oil (%)</label>
-<input class="form-control" id="yieldOil" type="number" value="70"/>
-</div>
-<div class="mb-3">
-<label class="form-label">Yield Gas (%)</label>
-<input class="form-control" id="yieldGas" type="number" value="20"/>
-</div>
-<div class="mb-3">
-<label class="form-label">Yield Char (%)</label>
-<input class="form-control" id="yieldChar" type="number" value="10"/>
-</div>
-<button class="btn btn-primary w-100 mt-3" onclick="hitung()">Hitung</button>
-</div>
-</div>
-<!-- Output -->
-<div class="col-md-6">
-<div class="card p-4 bg-light" id="output">
-<h5 class="mb-3">Hasil Perhitungan</h5>
-<p class="text-muted">Isi data terlebih dahulu dan tekan tombol "Hitung".</p>
-</div>
-</div>
-</div>
-</div>
-<script src="../../js/pirolisis/pirolisis.js"></script>
+  <div class="container">
+
+    <div class="logo-wrap">
+      <a href="index.html">
+        <img src="../../assets/imx_logo_blue.png" alt="Logo" style="max-width: 23%;">
+      </a>
+    </div>
+
+    <h2>Desain Reaktor Pirolisis (Plastik PE / PP / PS)</h2>
+
+    <div class="row g-4 stacked">
+      <!-- Input Column -->
+      <div class="col">
+        <div class="card">
+          <h5 style="font-size: 1.3rem; text-align: center; margin-top: -10px;">Input Data</h5>
+          <table class="custom-table input-table">
+            <tbody>
+              <tr>
+                <th><label for="jenisPlastik">Jenis Plastik</label></th>
+                <td>
+                  <select id="jenisPlastik">
+                    <option value="PE">Polyethylene (PE)</option>
+                    <option value="PP">Polypropylene (PP)</option>
+                    <option value="PS">Polystyrene (PS)</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th><label for="kapasitas">Kapasitas (kg/hari)</label></th>
+                <td><input id="kapasitas" type="number" value="11000"/></td>
+              </tr>
+              <tr>
+                <th><label for="suhu">Suhu Operasi (°C)</label></th>
+                <td><input id="suhu" type="number" value="500"/></td>
+              </tr>
+              <tr>
+                <th><label for="tinggal">Waktu Tinggal (menit)</label></th>
+                <td><input id="tinggal" type="number" value="30"/></td>
+              </tr>
+              <tr>
+                <th><label for="yieldOil">Yield Bio-oil (%)</label></th>
+                <td><input id="yieldOil" type="number" value="70"/></td>
+              </tr>
+              <tr>
+                <th><label for="yieldGas">Yield Gas (%)</label></th>
+                <td><input id="yieldGas" type="number" value="20"/></td>
+              </tr>
+              <tr>
+                <th><label for="yieldChar">Yield Char (%)</label></th>
+                <td><input id="yieldChar" type="number" value="10"/></td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn" onclick="hitung()">Hitung</button>
+        </div>
+      </div>
+
+      <!-- Output Column -->
+      <div class="col">
+        <div class="card hidden" id="output">
+          <h5 style="font-size: 1.3rem; text-align: center; margin-top: -10px;">Hasil Perhitungan (<span id="outJenis"></span>)</h5>
+
+          <!-- Reactor Sizing -->
+          <table class="custom-table">
+            
+            <tbody>
+              <tr><th>Kapasitas/jam</th>    <td id="outCapacity"></td></tr>
+              <tr><th>Densitas Bulk</th>    <td id="outDensity"></td></tr>
+              <tr><th>Suhu Operasi</th>     <td id="outTemp"></td></tr>
+              <tr><th>Volume Reaktor</th>   <td id="outVolume"></td></tr>
+              <tr><th>Diameter Reaktor</th> <td id="outDiameter"></td></tr>
+              <tr><th>Tinggi Reaktor</th>   <td id="outHeight"></td></tr>
+            </tbody>
+          </table>
+
+          <!-- Product Estimate -->
+          <h5 style="font-size: 1.3rem; text-align: center;">Estimasi Produk</h5>
+          <table class="custom-table">
+            <tbody>
+              <tr><th>Yield Disesuaikan</th><td id="outYieldSum"></td></tr>
+              <tr><th>Bio-oil</th>          <td id="outBioOil"></td></tr>
+              <tr><th>Gas</th>              <td id="outGasOut"></td></tr>
+              <tr><th>Char</th>             <td id="outCharOut"></td></tr>
+            </tbody>
+          </table>
+
+          <!-- Energy Estimate -->
+          <h5 style="font-size: 1.3rem; text-align: center;">Estimasi Energi Pemanas</h5>
+          <table class="custom-table">
+            <tbody>
+              <tr><th>Daya Termal</th>           <td id="outThermal"></td></tr>
+              <tr><th>Daya Listrik Efektif</th> <td id="outElectric"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../js/pirolisis/pirolisis.js"></script>
 </body>
 </html>

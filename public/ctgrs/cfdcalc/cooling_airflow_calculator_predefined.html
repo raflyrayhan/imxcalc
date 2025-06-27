@@ -1,107 +1,59 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
   <title>Cooling Load & Air Flow Calculator</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../../css/cooling_style.css"/>
 </head>
-<body class="bg-light">
-  <div class="container py-5">
-    <h2 class="text-center mb-4">Cooling Load & Required Air Flow Calculator</h2>
+<body>
+  <div class="container">
 
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-
-        <div class="form-group mb-2">
-          <label>Workshop Area (m²):</label>
-          <input type="number" class="form-control" id="area" value="1000" />
-        </div>
-        <div class="form-group mb-2">
-          <label>Lighting Power Density (W/m²):</label>
-          <input type="number" class="form-control" id="lightingDensity" value="12" />
-        </div>
-        <div class="form-group mb-2">
-          <label>Number of Workers:</label>
-          <input type="number" class="form-control" id="workers" value="20" />
-        </div>
-        <div class="form-group mb-2">
-          <label>Heat Gain per Worker (W):</label>
-          <input type="number" class="form-control" id="heatWorker" value="500" />
-        </div>
-        <div class="form-group mb-2">
-          <label>Number of Furnaces:</label>
-          <input type="number" class="form-control" id="furnaces" value="2" />
-        </div>
-        <div class="form-group mb-2">
-          <label>Heat Output per Furnace (kW):</label>
-          <input type="number" class="form-control" id="furnaceHeat" value="200" />
-        </div>
-        <div class="form-group mb-2">
-          <label>Other Machines Total Heat (kW):</label>
-          <input type="number" class="form-control" id="otherMachines" value="100" />
-        </div>
-        <div class="form-group mb-2">
-          <label>Sun-Exposed Roof/Wall Area (m²):</label>
-          <input type="number" class="form-control" id="solarArea" value="300" />
-        </div>
-        <div class="form-group mb-2">
-          <label>Solar Gain Rate (W/m²):</label>
-          <input type="number" class="form-control" id="solarRate" value="10" />
-        </div>
-        <div class="form-group mb-2">
-          <label>Ambient Temperature (°C):</label>
-          <input type="number" class="form-control" id="ambientTemp" value="35" />
-        </div>
-        <div class="form-group mb-3">
-          <label>Indoor Target Temperature (°C):</label>
-          <input type="number" class="form-control" id="indoorTemp" value="28" />
-        </div>
-
-        <button class="btn btn-primary w-100" onclick="calculate()">Calculate</button>
-
-        <div class="mt-4" id="result"></div>
-
-      </div>
+    <!-- Logo + Title -->
+    <div class="logo-wrap">
+      <a href="../../index.html">
+        <img src="../../assets/imx_logo_blue.png" alt="Logo" style="max-width: 25%;"/>
+      </a>
     </div>
+    <h2>Cooling Load & Required Air Flow Calculator</h2>
+
+    <!-- Input Card -->
+    <div class="card p-4 mb-4">
+      <h5 class="text-center mb-3" style="font-size: 1.3rem;">Input Data</h5>
+      <table class="custom-table input-table mb-3">
+        <colgroup><col class="col-label"/><col class="col-value"/></colgroup>
+        <tbody>
+          <tr><th><label for="area">Workshop Area (m²)</label></th><td><input id="area" type="number" value="1000"/></td></tr>
+          <tr><th><label for="lightingDensity">Lighting Power (W/m²)</label></th><td><input id="lightingDensity" type="number" value="12"/></td></tr>
+          <tr><th><label for="workers">Number of Workers</label></th><td><input id="workers" type="number" value="20"/></td></tr>
+          <tr><th><label for="heatWorker">Heat/Worker (W)</label></th><td><input id="heatWorker" type="number" value="500"/></td></tr>
+          <tr><th><label for="furnaces">Number of Furnaces</label></th><td><input id="furnaces" type="number" value="2"/></td></tr>
+          <tr><th><label for="furnaceHeat">Heat/Furnace (kW)</label></th><td><input id="furnaceHeat" type="number" value="200"/></td></tr>
+          <tr><th><label for="otherMachines">Other Machines Heat (kW)</label></th><td><input id="otherMachines" type="number" value="100"/></td></tr>
+          <tr><th><label for="solarArea">Sun-Exposed Area (m²)</label></th><td><input id="solarArea" type="number" value="300"/></td></tr>
+          <tr><th><label for="solarRate">Solar Gain (W/m²)</label></th><td><input id="solarRate" type="number" value="10"/></td></tr>
+          <tr><th><label for="ambientTemp">Ambient Temp (°C)</label></th><td><input id="ambientTemp" type="number" value="35"/></td></tr>
+          <tr><th><label for="indoorTemp">Target Temp (°C)</label></th><td><input id="indoorTemp" type="number" value="28"/></td></tr>
+        </tbody>
+      </table>
+      <button class="btn" onclick="calculate()">Calculate</button>
+    </div>
+
+    <!-- Output Card (hidden until calculate) -->
+    <div class="card p-4 hidden" id="resultCard">
+      <h5 class="mb-3" style="font-size: 1.3rem;">Results</h5>
+      <table class="custom-table mb-4">
+        <colgroup><col class="col-label"/><col class="col-value"/></colgroup>
+        <tbody>
+          <tr><th>Total Cooling Load</th><td id="outLoad"></td></tr>
+          <tr><th>Air Flow Required</th><td id="outFlow"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 
-  <script>
-    function calculate() {
-      const area = parseFloat(document.getElementById('area').value || 0);
-      const lightingDensity = parseFloat(document.getElementById('lightingDensity').value || 0);
-      const workers = parseInt(document.getElementById('workers').value || 0);
-      const heatWorker = parseFloat(document.getElementById('heatWorker').value || 0);
-      const furnaces = parseInt(document.getElementById('furnaces').value || 0);
-      const furnaceHeat = parseFloat(document.getElementById('furnaceHeat').value || 0) * 1000;
-      const otherMachines = parseFloat(document.getElementById('otherMachines').value || 0) * 1000;
-      const solarArea = parseFloat(document.getElementById('solarArea').value || 0);
-      const solarRate = parseFloat(document.getElementById('solarRate').value || 0);
-      const T_ambient = parseFloat(document.getElementById('ambientTemp').value || 0);
-      const T_indoor = parseFloat(document.getElementById('indoorTemp').value || 0);
-      const deltaT = T_ambient - T_indoor;
-
-      const q_people = workers * heatWorker;
-      const q_furnaces = furnaces * furnaceHeat;
-      const q_machines = otherMachines;
-      const q_lighting = area * lightingDensity;
-      const q_solar = solarArea * solarRate;
-
-      const q_total = q_people + q_furnaces + q_machines + q_lighting + q_solar;
-
-      const rho = 1.2; // kg/m³
-      const cp = 1005; // J/kg.K
-
-      const m_air = deltaT > 0 ? (q_total / (rho * cp * deltaT)).toFixed(2) : 0;
-
-      document.getElementById('result').innerHTML = `
-        <div class="alert alert-info">
-          <strong>Total Cooling Load:</strong> ${q_total.toLocaleString()} W<br/>
-          <strong>Required Cooling Air Flow:</strong> ${m_air} kg/s
-        </div>
-      `;
-    }
-  </script>
+  <script src="../../js/coolingcalc/coolingcalc.js"></script>
 </body>
 </html>

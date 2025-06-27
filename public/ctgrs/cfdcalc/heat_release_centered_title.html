@@ -1,113 +1,67 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Heat Release & Cooling Airflow Calculator</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Bootstrap only for grid -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"/>
+  <link rel="stylesheet" href="../../css/heat_style.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
-<body class="p-4">
-
+<body>
   <div class="container">
-    <h2 class="mb-4 text-center">Heat Release & Required Cooling Airflow Calculator</h2>
-    <div class="row g-3">
-      <div class="col-md-6 mx-auto">
-        <label class="form-label">Width (m)</label>
-        <input type="number" class="form-control mb-3" id="width" step="0.01">
 
-        <label class="form-label">Height (m)</label>
-        <input type="number" class="form-control mb-3" id="height" step="0.01">
+    <!-- Logo + Title -->
+    <div class="logo-wrap">
+      <a href="../../index.html"><img src="../../assets/imx_logo_blue.png" alt="Logo" style="max-width: 25%;"/></a>
+    </div>
+    <h2>Heat Release & Required Cooling Airflow Calculator</h2>
 
-        <label class="form-label">Length (m)</label>
-        <input type="number" class="form-control mb-3" id="length" step="0.01">
+    <!-- Input Card -->
+    <div class="card p-4 mb-4">
+      <h5 class="text-center mb-3">Input Data</h5>
+      <table class="custom-table input-table mb-3">
+        <colgroup><col class="col-label"/><col class="col-value"/></colgroup>
+        <tbody>
+          <tr><th><label for="width">Width (m)</label></th>
+              <td><input id="width" type="number" step="0.01" value="10"/></td></tr>
+          <tr><th><label for="height">Height (m)</label></th>
+              <td><input id="height" type="number" step="0.01" value="5"/></td></tr>
+          <tr><th><label for="length">Length (m)</label></th>
+              <td><input id="length" type="number" step="0.01" value="20"/></td></tr>
+          <tr><th><label for="surfaceTemp">Surface Temp (°C)</label></th>
+              <td><input id="surfaceTemp" type="number" step="0.1" value="80"/></td></tr>
+          <tr><th><label for="envTemp">Ambient Temp (°C)</label></th>
+              <td><input id="envTemp" type="number" step="0.1" value="25"/></td></tr>
+        </tbody>
+      </table>
+      <button class="btn" onclick="calculateHeat()">Calculate</button>
+    </div>
 
-        <label class="form-label">Surface Temperature (°C)</label>
-        <input type="number" class="form-control mb-3" id="surfaceTemp" step="0.1">
-
-        <label class="form-label">Environmental Temperature (°C)</label>
-        <input type="number" class="form-control mb-3" id="envTemp" step="0.1">
-
-        <button class="btn btn-primary w-100 mt-3" onclick="calculateHeat()">Calculate</button>
-
-        <div class="mt-4 border p-3 rounded bg-light">
-          <h5>Result:</h5>
-          <p id="result">-</p>
-          <p id="airflowResult">-</p>
-          <div class="d-flex gap-2">
-            <button class="btn btn-outline-success" onclick="exportToExcel()">Export to Excel</button>
-            <button class="btn btn-outline-danger" onclick="exportToPDF()">Export to PDF</button>
-          </div>
-        </div>
+    <!-- Results Card (hidden by default) -->
+    <div class="card p-4 hidden" id="resultCard">
+      <h5 class="mb-3">Result</h5>
+      <table class="custom-table mb-4">
+        <colgroup><col class="col-label"/><col class="col-value"/></colgroup>
+        <tbody>
+          <tr><th>Heat Release (W)</th>
+              <td id="outHeat">–</td></tr>
+          <tr><th>Airflow (m³/h)</th>
+              <td id="outFlow">–</td></tr>
+        </tbody>
+      </table>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-success" onclick="exportToExcel()">Export Excel</button>
+        <button class="btn btn-outline-danger"  onclick="exportToPDF()">Export PDF</button>
       </div>
     </div>
+
   </div>
 
-  <script>
-    let calcData = {};
-
-    function calculateHeat() {
-      const width = parseFloat(document.getElementById('width').value);
-      const height = parseFloat(document.getElementById('height').value);
-      const length = parseFloat(document.getElementById('length').value);
-      const surfaceTemp = parseFloat(document.getElementById('surfaceTemp').value);
-      const envTemp = parseFloat(document.getElementById('envTemp').value);
-
-      if (isNaN(width) || isNaN(height) || isNaN(length) || isNaN(surfaceTemp) || isNaN(envTemp)) {
-        document.getElementById('result').innerText = "Please fill in all fields correctly.";
-        document.getElementById('airflowResult').innerText = "";
-        return;
-      }
-
-      const deltaT = surfaceTemp - envTemp;
-      const h = 10;
-      const area = 2 * (width * height + width * length + height * length);
-      const Q = h * area * deltaT;
-
-      const rho = 1.2;
-      const cp = 1005;
-      const airflow = Q / (rho * cp * deltaT);
-      const airflow_hr = airflow * 3600;
-
-      const resultText = `Estimated Heat Release: ${Q.toFixed(2)} W (Area: ${area.toFixed(2)} m², ΔT: ${deltaT}°C)`;
-      const airflowText = `Required Cooling Airflow: ${airflow_hr.toFixed(2)} m³/h`;
-
-      document.getElementById('result').innerText = resultText;
-      document.getElementById('airflowResult').innerText = airflowText;
-
-      calcData = {
-        Width: width,
-        Height: height,
-        Length: length,
-        SurfaceTemp: surfaceTemp,
-        EnvTemp: envTemp,
-        Area: area.toFixed(2),
-        DeltaT: deltaT,
-        HeatRelease_W: Q.toFixed(2),
-        Airflow_m3h: airflow_hr.toFixed(2)
-      };
-    }
-
-    function exportToExcel() {
-      const ws = XLSX.utils.json_to_sheet([calcData]);
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "Results");
-      XLSX.writeFile(wb, "Heat_Calculation_Result.xlsx");
-    }
-
-    function exportToPDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      doc.text("Heat Release & Cooling Airflow Result", 10, 10);
-      let y = 20;
-      for (const [key, value] of Object.entries(calcData)) {
-        doc.text(`${key}: ${value}`, 10, y);
-        y += 10;
-      }
-      doc.save("Heat_Calculation_Result.pdf");
-    }
-  </script>
-
+  <script src="../../js/heatrelease/heat_calc.js"></script>
 </body>
 </html>

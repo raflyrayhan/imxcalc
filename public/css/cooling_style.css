@@ -1,11 +1,11 @@
-/* ─── Base & Layout ─── */
+/* ─── Base & Container ─── */
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif Bold;
   margin: 20px;
   background: #f4f4f4;
 }
 .container {
-  max-width: 900px;
+   max-width: 900px;
   margin: 40px auto;
   background: #fff;
   padding: 30px;
@@ -16,47 +16,30 @@ body {
   text-align: center;
   margin-bottom: 20px;
 }
-h2 {
+h2, h5 {
   text-align: center;
   color: #1a0284;
   margin-bottom: 30px;
   font-size: 2rem;
 }
-.row {
-  display: flex;
-  gap: 20px;
-}
-.col {
-  flex: 1;
-}
+
+/* ─── Card ─── */
 .card {
   background: #fff;
   border-radius: 8px;
   padding: 20px;
+  margin-bottom: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 /* ─── Unified Table Styles ─── */
 .custom-table {
   width: 100%;
-  margin-bottom: 20px;
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 8px;
   overflow: hidden;
-  background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-   border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-   table-layout: fixed;
-}
-.custom-table .col-label {
-  width: 40%;            /* solid-blue column */
-}
-
-.custom-table .col-value {
-  width: 60%;            /* zebra-striped column */
 }
 .custom-table th {
   color: #000000;
@@ -68,33 +51,26 @@ h2 {
 .custom-table tbody tr:nth-child(even) td {
   background-color: rgba(26, 2, 132, 0.05) !important;
 }
-/* Round the 4 outer corners */
-.custom-table tr:first-child th:first-child {
-  border-top-left-radius: 8px;
-}
-.custom-table tr:first-child td:last-child {
-  border-top-right-radius: 8px;
-}
-.custom-table tr:last-child td:not(:first-child) {
-  border-bottom-right-radius: 8px;
-}
-.custom-table tr:last-child th:first-child {
-  border-bottom-left-radius: 8px;
-}
-/* ─── Input‐table tweaks ─── */
+/* Corner rounding */
+.custom-table tr:first-child th:first-child   {border-top-left-radius:8px;}
+.custom-table tr:first-child th:last-child    {border-top-right-radius:8px;}
+.custom-table tr:last-child td:first-child    {border-bottom-left-radius:8px;}
+.custom-table tr:last-child td:last-child     {border-bottom-right-radius:8px;}
+
+/* ─── Input-Table tweaks ─── */
 .input-table th {
   width: 40%;
   text-align: left;
   padding-right: 1.5rem;
 }
-.input-table td select,
-.input-table td input {
+.input-table td input,
+.input-table td select {
   width: 100%;
   max-width: 200px;
-  box-sizing: border-box;
-  padding: .5rem;
+  padding: .4rem .6rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
 /* ─── Button ─── */
@@ -106,6 +82,7 @@ h2 {
   color: #fff;
   border: none;
   border-radius: 50px;
+  font-weight: 600;
   cursor: pointer;
   transition: transform .2s, box-shadow .2s;
 }
@@ -117,14 +94,4 @@ h2 {
 /* ─── Hidden helper ─── */
 .hidden {
   display: none !important;
-}
-/* Stack input + output vertically instead of side-by-side */
-.row.stacked {
-  display: flex;           /* already flex, but… */
-  flex-direction: column;  /* override row to column */
-}
-
-/* Optional: ensure each col fills width when stacked */
-.row.stacked .col {
-  width: 100%;
 }
