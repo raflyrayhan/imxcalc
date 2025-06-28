@@ -5,7 +5,7 @@ body {
   background: #f4f4f4;
 }
 .container {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 40px auto;
   background: #fff;
   padding: 30px;
@@ -50,7 +50,9 @@ h3 {
 
 /* ─── Unified Table Styles ─── */
 table.custom-table {
+  font-family: Arial;
   width: 100%;
+  font-size: 0.68rem;
   border-collapse: separate;   /* allow corner rounding */
   border-spacing: 0;
   border-radius: 8px;
@@ -68,7 +70,7 @@ table.custom-table thead th {
   padding: .75rem .6rem;
   text-align: center;
   border-bottom: 1px solid #ddd;
-  font-size: .9rem;
+  font-size: .68rem;
 }
 
 /* all body cells */
@@ -117,7 +119,7 @@ table.custom-table tr:last-child td:last-child {
   padding: .5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: .8rem;
+  font-size: .68rem;
 }
 
 /* ─── Results box match ─── */
