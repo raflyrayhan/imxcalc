@@ -8,127 +8,145 @@
 </head>
 <body>
   <div class="container">
-    <div style="text-align: center;">
-      <a href="../../index.html"><img src="../../assets/imx_logo_blue.png" style="max-width: 20%;"></a>
-    </div>
+    <a href="../../index.html">
+    <img src="../../assets/imx_logo_blue.png" style="max-width: 25%;">
+    </a>
     <h2>Gasoline Blend Property Calculator</h2>
+
     <h3>1. Enter Component Properties</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Component</th><th>RON</th><th>MON</th><th>RVP</th><th>Sulfur</th>
-          <th>Oxygenate</th><th>Aromatic</th><th>Benzene</th>
-          <th>Density</th><th>Flash Point</th>
-        </tr>
-      </thead>
-      <tbody id="propTable">
-        <tr>
-          <td>Reformate</td>
-          <td><input type="number" id="Reformate_RON" value="98"></td>
-          <td><input type="number" id="Reformate_MON" value="88"></td>
-          <td><input type="number" id="Reformate_RVP" value="1.5"></td>
-          <td><input type="number" id="Reformate_Sulfur" value="20"></td>
-          <td><input type="number" id="Reformate_Oxy" value="0"></td>
-          <td><input type="number" id="Reformate_Aro" value="70"></td>
-          <td><input type="number" id="Reformate_BZ" value="3.0"></td>
-          <td><input type="number" id="Reformate_Dens" value="770"></td>
-          <td><input type="number" id="Reformate_FP" value="-30"></td>
-        </tr>
-        <tr>
-          <td>FCC</td>
-          <td><input type="number" id="FCC_RON" value="90"></td>
-          <td><input type="number" id="FCC_MON" value="80"></td>
-          <td><input type="number" id="FCC_RVP" value="8.0"></td>
-          <td><input type="number" id="FCC_Sulfur" value="1200"></td>
-          <td><input type="number" id="FCC_Oxy" value="0"></td>
-          <td><input type="number" id="FCC_Aro" value="25"></td>
-          <td><input type="number" id="FCC_BZ" value="1.5"></td>
-          <td><input type="number" id="FCC_Dens" value="740"></td>
-          <td><input type="number" id="FCC_FP" value="-30"></td>
-        </tr>
-        <tr>
-          <td>Alkylate</td>
-          <td><input type="number" id="Alkylate_RON" value="96"></td>
-          <td><input type="number" id="Alkylate_MON" value="94"></td>
-          <td><input type="number" id="Alkylate_RVP" value="6.0"></td>
-          <td><input type="number" id="Alkylate_Sulfur" value="5"></td>
-          <td><input type="number" id="Alkylate_Oxy" value="0"></td>
-          <td><input type="number" id="Alkylate_Aro" value="0"></td>
-          <td><input type="number" id="Alkylate_BZ" value="0"></td>
-          <td><input type="number" id="Alkylate_Dens" value="700"></td>
-          <td><input type="number" id="Alkylate_FP" value="-30"></td>
-        </tr>
-        <tr>
-          <td>Isomerate</td>
-          <td><input type="number" id="Isomerate_RON" value="90"></td>
-          <td><input type="number" id="Isomerate_MON" value="83"></td>
-          <td><input type="number" id="Isomerate_RVP" value="9.0"></td>
-          <td><input type="number" id="Isomerate_Sulfur" value="8"></td>
-          <td><input type="number" id="Isomerate_Oxy" value="0"></td>
-          <td><input type="number" id="Isomerate_Aro" value="0.5"></td>
-          <td><input type="number" id="Isomerate_BZ" value="0"></td>
-          <td><input type="number" id="Isomerate_Dens" value="680"></td>
-          <td><input type="number" id="Isomerate_FP" value="-40"></td>
-        </tr>
-        <tr>
-          <td>Butane</td>
-          <td><input type="number" id="Butane_RON" value="93"></td>
-          <td><input type="number" id="Butane_MON" value="90"></td>
-          <td><input type="number" id="Butane_RVP" value="55.0"></td>
-          <td><input type="number" id="Butane_Sulfur" value="5"></td>
-          <td><input type="number" id="Butane_Oxy" value="0"></td>
-          <td><input type="number" id="Butane_Aro" value="0"></td>
-          <td><input type="number" id="Butane_BZ" value="0"></td>
-          <td><input type="number" id="Butane_Dens" value="600"></td>
-          <td><input type="number" id="Butane_FP" value="-60"></td>
-        </tr>
-        <tr>
-          <td>Ethanol</td>
-          <td><input type="number" id="Ethanol_RON" value="110"></td>
-          <td><input type="number" id="Ethanol_MON" value="92"></td>
-          <td><input type="number" id="Ethanol_RVP" value="2.3"></td>
-          <td><input type="number" id="Ethanol_Sulfur" value="0"></td>
-          <td><input type="number" id="Ethanol_Oxy" value="34.7"></td>
-          <td><input type="number" id="Ethanol_Aro" value="0"></td>
-          <td><input type="number" id="Ethanol_BZ" value="0"></td>
-          <td><input type="number" id="Ethanol_Dens" value="789"></td>
-          <td><input type="number" id="Ethanol_FP" value="13"></td>
-        </tr>
-        <tr>
-          <td>Coker</td>
-          <td><input type="number" id="Coker_RON" value="70"></td>
-          <td><input type="number" id="Coker_MON" value="65"></td>
-          <td><input type="number" id="Coker_RVP" value="8.0"></td>
-          <td><input type="number" id="Coker_Sulfur" value="3000"></td>
-          <td><input type="number" id="Coker_Oxy" value="0"></td>
-          <td><input type="number" id="Coker_Aro" value="20"></td>
-          <td><input type="number" id="Coker_BZ" value="1.5"></td>
-          <td><input type="number" id="Coker_Dens" value="750"></td>
-          <td><input type="number" id="Coker_FP" value="-30"></td>
-        </tr>
-      </tbody>
-    </table>
+<table class="custom-table input-table mb-4">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>RON</th><th>MON</th><th>RVP</th><th>Sulfur</th>
+      <th>Oxygenate</th><th>Aromatic</th><th>Benzene</th>
+      <th>Density</th><th>Flash Point</th>
+    </tr>
+  </thead>
+  <tbody id="propTable">
+    <tr>
+      <td>Reformate</td>
+      <td><input type="number" id="Reformate_RON" value="98"></td>
+      <td><input type="number" id="Reformate_MON" value="88"></td>
+      <td><input type="number" id="Reformate_RVP" value="1.5"></td>
+      <td><input type="number" id="Reformate_Sulfur" value="20"></td>
+      <td><input type="number" id="Reformate_Oxy" value="0"></td>
+      <td><input type="number" id="Reformate_Aro" value="70"></td>
+      <td><input type="number" id="Reformate_BZ" value="3.0"></td>
+      <td><input type="number" id="Reformate_Dens" value="770"></td>
+      <td><input type="number" id="Reformate_FP" value="-30"></td>
+    </tr>
+    <tr>
+      <td>FCC</td>
+      <td><input type="number" id="FCC_RON" value="90"></td>
+      <td><input type="number" id="FCC_MON" value="80"></td>
+      <td><input type="number" id="FCC_RVP" value="8.0"></td>
+      <td><input type="number" id="FCC_Sulfur" value="1200"></td>
+      <td><input type="number" id="FCC_Oxy" value="0"></td>
+      <td><input type="number" id="FCC_Aro" value="25"></td>
+      <td><input type="number" id="FCC_BZ" value="1.5"></td>
+      <td><input type="number" id="FCC_Dens" value="740"></td>
+      <td><input type="number" id="FCC_FP" value="-30"></td>
+    </tr>
+    <tr>
+      <td>Alkylate</td>
+      <td><input type="number" id="Alkylate_RON" value="96"></td>
+      <td><input type="number" id="Alkylate_MON" value="94"></td>
+      <td><input type="number" id="Alkylate_RVP" value="6.0"></td>
+      <td><input type="number" id="Alkylate_Sulfur" value="5"></td>
+      <td><input type="number" id="Alkylate_Oxy" value="0"></td>
+      <td><input type="number" id="Alkylate_Aro" value="0"></td>
+      <td><input type="number" id="Alkylate_BZ" value="0"></td>
+      <td><input type="number" id="Alkylate_Dens" value="700"></td>
+      <td><input type="number" id="Alkylate_FP" value="-30"></td>
+    </tr>
+    <tr>
+      <td>Isomerate</td>
+      <td><input type="number" id="Isomerate_RON" value="90"></td>
+      <td><input type="number" id="Isomerate_MON" value="83"></td>
+      <td><input type="number" id="Isomerate_RVP" value="9.0"></td>
+      <td><input type="number" id="Isomerate_Sulfur" value="8"></td>
+      <td><input type="number" id="Isomerate_Oxy" value="0"></td>
+      <td><input type="number" id="Isomerate_Aro" value="0.5"></td>
+      <td><input type="number" id="Isomerate_BZ" value="0"></td>
+      <td><input type="number" id="Isomerate_Dens" value="680"></td>
+      <td><input type="number" id="Isomerate_FP" value="-40"></td>
+    </tr>
+    <tr>
+      <td>Butane</td>
+      <td><input type="number" id="Butane_RON" value="93"></td>
+      <td><input type="number" id="Butane_MON" value="90"></td>
+      <td><input type="number" id="Butane_RVP" value="55.0"></td>
+      <td><input type="number" id="Butane_Sulfur" value="5"></td>
+      <td><input type="number" id="Butane_Oxy" value="0"></td>
+      <td><input type="number" id="Butane_Aro" value="0"></td>
+      <td><input type="number" id="Butane_BZ" value="0"></td>
+      <td><input type="number" id="Butane_Dens" value="600"></td>
+      <td><input type="number" id="Butane_FP" value="-60"></td>
+    </tr>
+    <tr>
+      <td>Ethanol</td>
+      <td><input type="number" id="Ethanol_RON" value="110"></td>
+      <td><input type="number" id="Ethanol_MON" value="92"></td>
+      <td><input type="number" id="Ethanol_RVP" value="2.3"></td>
+      <td><input type="number" id="Ethanol_Sulfur" value="0"></td>
+      <td><input type="number" id="Ethanol_Oxy" value="34.7"></td>
+      <td><input type="number" id="Ethanol_Aro" value="0"></td>
+      <td><input type="number" id="Ethanol_BZ" value="0"></td>
+      <td><input type="number" id="Ethanol_Dens" value="789"></td>
+      <td><input type="number" id="Ethanol_FP" value="13"></td>
+    </tr>
+    <tr>
+      <td>Coker</td>
+      <td><input type="number" id="Coker_RON" value="70"></td>
+      <td><input type="number" id="Coker_MON" value="65"></td>
+      <td><input type="number" id="Coker_RVP" value="8.0"></td>
+      <td><input type="number" id="Coker_Sulfur" value="3000"></td>
+      <td><input type="number" id="Coker_Oxy" value="0"></td>
+      <td><input type="number" id="Coker_Aro" value="20"></td>
+      <td><input type="number" id="Coker_BZ" value="1.5"></td>
+      <td><input type="number" id="Coker_Dens" value="750"></td>
+      <td><input type="number" id="Coker_FP" value="-30"></td>
+    </tr>
+  </tbody>
+</table>
 
-    <h3>2. Enter Volume (%) for Each Component</h3>
-    <table>
-      <thead>
-        <tr><th>Component</th><th>Volume (%)</th></tr>
-      </thead>
-      <tbody id="inputTable">
-        <tr><td>Reformate</td><td><input type="number" id="vol_Reformate" value="0"></td></tr>
-        <tr><td>FCC</td><td><input type="number" id="vol_FCC" value="0"></td></tr>
-        <tr><td>Alkylate</td><td><input type="number" id="vol_Alkylate" value="0"></td></tr>
-        <tr><td>Isomerate</td><td><input type="number" id="vol_Isomerate" value="0"></td></tr>
-        <tr><td>Butane</td><td><input type="number" id="vol_Butane" value="0"></td></tr>
-        <tr><td>Ethanol</td><td><input type="number" id="vol_Ethanol" value="0"></td></tr>
-        <tr><td>Coker</td><td><input type="number" id="vol_Coker" value="0"></td></tr>
-      </tbody>
-    </table>
+<h3>2. Enter Volume (%) for Each Component</h3>
+<table class="custom-table input-table mb-4">
+  <thead>
+    <tr><th>Component</th><th>Volume (%)</th></tr>
+  </thead>
+  <tbody id="inputTable">
+    <tr><td>Reformate</td><td><input type="number" id="vol_Reformate" value="0"></td></tr>
+    <tr><td>FCC</td><td><input type="number" id="vol_FCC" value="0"></td></tr>
+    <tr><td>Alkylate</td><td><input type="number" id="vol_Alkylate" value="0"></td></tr>
+    <tr><td>Isomerate</td><td><input type="number" id="vol_Isomerate" value="0"></td></tr>
+    <tr><td>Butane</td><td><input type="number" id="vol_Butane" value="0"></td></tr>
+    <tr><td>Ethanol</td><td><input type="number" id="vol_Ethanol" value="0"></td></tr>
+    <tr><td>Coker</td><td><input type="number" id="vol_Coker" value="0"></td></tr>
+  </tbody>
+</table>
 
-    <button onclick="calculateProperties()" class="btn" style="color: white;">
-      Calculate Properties
-    </button>
-    <div class="result" id="results"></div>
+    <button onclick="calculateProperties()" class="btn">Calculate Properties</button>
+
+    <!-- ↓↓↓ Results go here ↓↓↓ -->
+    <div id="resultsCard" class="result mt-4">
+      <h3>Calculated Blend Properties</h3>
+      <table class="custom-table output-table">
+        <colgroup><col class="col-label"/><col class="col-value"/></colgroup>
+        <tbody>
+          <tr><th>RON</th>            <td id="outRON">–</td></tr>
+          <tr><th>MON</th>            <td id="outMON">–</td></tr>
+          <tr><th>RVP (psi)</th>      <td id="outRVP">–</td></tr>
+          <tr><th>Sulfur (ppm)</th>   <td id="outSulfur">–</td></tr>
+          <tr><th>Oxygenate (wt%)</th><td id="outOxy">–</td></tr>
+          <tr><th>Aromatic (wt%)</th> <td id="outAro">–</td></tr>
+          <tr><th>Benzene (vol%)</th> <td id="outBZ">–</td></tr>
+          <tr><th>Density (kg/m³)</th><td id="outDens">–</td></tr>
+          <tr><th>Flash Point (°C)</th><td id="outFP">–</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script src="../../js/blending/blending_calculation.js"></script>

@@ -1,125 +1,136 @@
-/* ─────────── Your Original Styles ─────────── */
+/* ─── Base & Layout ─── */
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   margin: 20px;
   background: #f4f4f4;
 }
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-bottom: 20px;
-  border-radius: 10%;
-}
-
-th,
-td {
-  border: 1px solid #ccc;
-  padding: 6px;
-  text-align: center;
-}
-
-th {
-  background-color: #1a0284;
-  color: white;
-}
-
-input[type='number'] {
-  width: 70px;
-}
-
-.result {
-  background: #fff;
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-h3 {
-  margin-top: 30px;
-}
-
-h2 {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.btn {
-  display: block;
-  width: 15%;
-  height: 40px;
-  margin: 0 auto 20px;
-  background-color: #1a0284;
-  text-align: center;
-  line-height: normal;
-  border-radius: 100px;
-}
-
-/* ─────────── “Cool” Additions ─────────── */
-
-/* Centered card container */
 .container {
   max-width: 1000px;
   margin: 40px auto;
   background: #fff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  text-align: center;
 }
-
-/* Logo wrapper spacing */
-.container > div[style] {
-  margin-bottom: 20px;
-}
-
-/* Enhanced headings */
 h2 {
   font-size: 2.5rem;
   color: #1a0284;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  text-align: center;
   margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
-
 h3 {
   color: #3a13cd;
   border-bottom: 2px solid #3a13cd;
   display: inline-block;
   padding-bottom: 5px;
+  margin-top: 30px;
 }
 
-/* Table panel look */
-table {
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-tbody tr:nth-child(even) {
-  background: rgba(26, 2, 132, 0.05);
-}
-
-/* Inputs styling */
-input[type='number'] {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 4px;
-}
-
-/* Button hover lift */
+/* ─── Buttons ─── */
 .btn {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: block;
+  width: 20%;
+  margin: 20px auto;
+  padding: .75rem;
+  background: linear-gradient(90deg, #4169E1, #4B0082);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  border-radius: 100px;
+  transition: transform .2s, box-shadow .2s;
+  cursor: pointer;
 }
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
-/* Results box match */
-.result {
-  max-width: 100%;
-  margin: 20px auto 0;
+/* ─── Unified Table Styles ─── */
+table.custom-table {
+  width: 100%;
+  border-collapse: separate;   /* allow corner rounding */
+  border-spacing: 0;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  table-layout: fixed;         /* equal col widths if you use <colgroup> */
+}
+
+/* headers */
+table.custom-table thead th {
+  background: #1a0284;
+  color: #fff;
+  padding: .75rem .6rem;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  font-size: .9rem;
+}
+
+/* all body cells */
+table.custom-table tbody th,
+table.custom-table tbody td {
+  padding: .75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+   border-right: 1px solid #c0bebe;
+}
+
+/* full-row zebra on even rows */
+table.custom-table tbody tr:nth-child(even) td,
+table.custom-table tbody tr:nth-child(even) th {
+  background: rgba(26,2,132,0.05);
+  border-right: 1px solid #c0bebe;
+}
+
+/* corner rounding */
+table.custom-table tr:first-child th:first-child {
+  border-top-left-radius: 8px;
+}
+table.custom-table tr:first-child th:last-child {
+  border-top-right-radius: 8px;
+}
+table.custom-table tr:last-child td:first-child,
+table.custom-table tr:last-child th:first-child {
+  border-bottom-left-radius: 8px;
+}
+table.custom-table tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+/* ─── Input-table tweaks ─── */
+.input-table th {
+  width: 40%;
+  text-align: center;
+  padding-right: 1rem;
+  border-right: 1px solid #ffffff;
+}
+.input-table td input,
+.input-table td select {
+  width: 100%;
+  max-width: 200px;
+  box-sizing: border-box;
+  padding: .5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: .8rem;
+}
+
+/* ─── Results box match ─── */
+.result {
   background: #fff;
   padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-right: 1px solid #ddd;
+}
+
+/* ─── Hidden helper ─── */
+.hidden {
+  display: none !important;
 }

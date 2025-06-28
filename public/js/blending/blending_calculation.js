@@ -1,19 +1,45 @@
-const components = ["Reformate","FCC","Alkylate","Isomerate","Butane","Ethanol","Coker"];
-    function getProp(comp, prop) {
-      return parseFloat(document.getElementById(`${comp}_${prop}`).value) || 0;
-    }
+const components = [
+  "Reformate", "FCC", "Alkylate",
+  "Isomerate", "Butane", "Ethanol", "Coker"
+];
 
-    function calculateProperties() {
-      let V = components.map(c => parseFloat(document.getElementById(`vol_${c}`).value) || 0);
-      let Vtot = V.reduce((a, b) => a + b, 0);
-      if (Vtot === 0) return document.getElementById("results").innerText = "Please input volumes.";
+// fetch one property from DOM, fall back to 0
+function getProp(comp, prop) {
+  return parseFloat(
+    document.getElementById(`${comp}_${prop}`).value
+  ) || 0;
+}
 
-      const P = ["RON", "MON", "RVP", "Sulfur", "Oxy", "Aro", "BZ", "Dens", "FP"];
-      const labels = ["RON", "MON", "RVP (psi)", "Sulfur (ppm)", "Oxygenate (wt%)", "Aromatic (wt%)", "Benzene (vol%)", "Density (kg/m³)", "Flash Point (°C)"];
-      let output = "<strong>Calculated Blend Properties:</strong><br>";
-      P.forEach((p, i) => {
-        let val = components.reduce((sum, c, j) => sum + V[j]*getProp(c, p), 0) / Vtot;
-        output += `${labels[i]}: ${val.toFixed(2)}<br>`;
-      });
-      document.getElementById("results").innerHTML = output;
-    }
+function calculateProperties() {
+  document.getElementById("resultsCard").classList.remove("hidden");
+  // 1) Read volume %s
+  const V = components.map(c =>
+    parseFloat(document.getElementById(`vol_${c}`).value) || 0
+  );
+  const Vtot = V.reduce((a,b) => a+b, 0);
+  if (Vtot === 0) {
+    return alert("Please input some volumes!");
+  }
+
+  // 2) Which props to average and their output IDs
+  const P      = ["RON","MON","RVP","Sulfur","Oxy","Aro","BZ","Dens","FP"];
+  const outIDs = [
+    "outRON","outMON","outRVP","outSulfur",
+    "outOxy","outAro","outBZ","outDens","outFP"
+  ];
+  const units  = [
+    "",     "",     " psi",  " ppm",
+    " wt%", " wt%", " vol%", " kg/m³"," °C"
+  ];
+
+  // 3) Compute & write each one
+  P.forEach((prop, i) => {
+    const weightedSum = components.reduce((sum, comp, j) =>
+      sum + V[j] * getProp(comp, prop)
+    , 0);
+    const avg = weightedSum / Vtot;
+    document
+      .getElementById(outIDs[i])
+      .textContent = avg.toFixed(2) + units[i];
+  });
+}
