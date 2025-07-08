@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Combined Plastic Pyrolysis Calculator & Reactor Design (Enhanced)</title>
+    <link rel="stylesheet" href="../../css/piro_style.css">
+    <style>
+        .custom-table tbody tr {
+            height: 50px; /* Increased row height */
+        }
+        
+        /* Add some spacing between sections */
+        .card {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-wrap">
+            <img src="../../assets/imx_logo_blue.png" alt="Logo" style="max-width: 23%;">
+        </div>
+        
+        <h2>Plastic Pyrolysis Calculator</h2>
+        
+        <div class="row stacked">
+            <div class="col">
+                <div class="card">
+                    <table class="custom-table input-table">
+                        <tbody>
+                            <tr>
+                                <th><label for="totalFeed">Total Feed Mass (kg)</label></th>
+                                <td><input type="number" id="totalFeed" value="100"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="waterContent">Water Content (% of Total Feed)</label></th>
+                                <td><input type="number" id="waterContent" value="0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3 style="margin-top: 40px; text-align: center;">Input Plastic Types and Percentage</h3>
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Plastic Type</th>
+                                <th>Percentage (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PE (Polyethylene)</td>
+                                <td><input type="number" id="pe" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>PP (Polypropylene)</td>
+                                <td><input type="number" id="pp" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>PS (Polystyrene)</td>
+                                <td><input type="number" id="ps" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>PVC (Polyvinyl Chloride)</td>
+                                <td><input type="number" id="pvc" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>PET (Polyethylene Terephthalate)</td>
+                                <td><input type="number" id="pet" value="0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <button onclick="calculatePyrolysis()" class="btn">Calculate Pyrolysis Products</button>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card hidden" id="pyrolysisOutput">
+                    <h5 style="font-size: 1.3rem; text-align: center;">Pyrolysis Results</h5>
+                    <div id="pyrolysisResult">
+                        <!-- Results will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+        
+        <h2>Pyrolysis Reactor Design Calculator</h2>
+        
+        <div class="row stacked">
+            <div class="col">
+                <div class="card">
+                    <table class="custom-table input-table">
+                        <tbody>
+                            <tr>
+                                <th><label for="density">Plastic Bulk Density (kg/m³)</label></th>
+                                <td><input type="number" id="density" value="250"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="targetTemp">Target Temperature (°C)</label></th>
+                                <td><input type="number" id="targetTemp" value="500"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="residenceTime">Residence Time (hours)</label></th>
+                                <td><input type="number" id="residenceTime" value="2"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="decompHeat">Decomposition Heat (MJ/kg)</label></th>
+                                <td><input type="number" id="decompHeat" value="1.3"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="cp">Specific Heat Capacity (kJ/kg·K)</label></th>
+                                <td><input type="number" id="cp" value="2.0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <button onclick="calculateReactor()" class="btn">Calculate Reactor Design</button>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card hidden" id="reactorOutput">
+                    <h5 style="font-size: 1.3rem; text-align: center;">Reactor Design Results</h5>
+                    <div id="reactorResult">
+                        <!-- Results will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/pirolisis/combine_pyrolysis.js"></script>
+</body>
+</html>
